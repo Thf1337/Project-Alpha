@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1eb6084f62746f9b97d481c67f8b03a, type: 3}
+  m_Name: Sword_1
+  m_EditorClassIdentifier: 
+  <NumberOfAttacks>k__BackingField: 3
+  <ComponentData>k__BackingField:
+  - rid: 4997142344509423616
+  - rid: 4997142354999640064
+  - rid: 4997142354999640065
+  - rid: 4997142354999640066
+  references:
+    version: 2
+    RefIds:
+    - rid: 4997142344509423616
+      type: {class: WeaponSpriteData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
+      data:
+        <AttackData>k__BackingField:
+        - <Sprites>k__BackingField:
+          - {fileID: 2090928191, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+          - {fileID: -1256944648, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+          - {fileID: 1838914965, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+          - {fileID: -1028359179, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+          - {fileID: -305631951, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+        - <Sprites>k__BackingField:
+          - {fileID: -1565556594, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+          - {fileID: 1333830094, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+          - {fileID: 1309810767, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+          - {fileID: -1897599145, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+          - {fileID: 387010206, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+        - <Sprites>k__BackingField:
+          - {fileID: -1534188051, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+          - {fileID: -2135397617, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+          - {fileID: -1192588335, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+          - {fileID: 488790890, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+          - {fileID: -2094904634, guid: 6eabb9c9ffd4aa74d83b54b4a67c5488, type: 3}
+    - rid: 4997142354999640064
+      type: {class: WeaponDamageData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
+      data:
+        damageAmount: 10
+        source: {fileID: 0}
+    - rid: 4997142354999640065
+      type: {class: WeaponHitBoxData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
+      data:
+        <DamageableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 0
+        <HitBox>k__BackingField:
+          serializedVersion: 2
+          x: 1
+          y: 0.25
+          width: 2
+          height: 2.5
+    - rid: 4997142354999640066
+      type: {class: WeaponKnockBackData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
+      data:
+        <KnockBackAngle>k__BackingField: {x: 1, y: 1}
+        <KnockBackStrength>k__BackingField: 50
