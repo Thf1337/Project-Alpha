@@ -13,7 +13,7 @@ namespace UI
         private Slider _slider;
         private RectTransform _rectTransform;
 
-        private void Start()
+        private void Awake()
         {
             _slider = GetComponent<Slider>();
             _rectTransform = GetComponent<RectTransform>();

@@ -31,6 +31,7 @@ namespace Controls
         protected enum MovementState { Idle, Running, Jumping, Falling }
     
         protected Rigidbody2D Rigidbody;
+        protected BoxCollider2D BoxCollider;
         protected Animator Animator;
         protected SpriteRenderer SpriteRenderer;
 
@@ -48,6 +49,7 @@ namespace Controls
             Jumps = jumpAmount;
         
             Rigidbody = GetComponent<Rigidbody2D>();
+            BoxCollider = GetComponent<BoxCollider2D>();
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
         }

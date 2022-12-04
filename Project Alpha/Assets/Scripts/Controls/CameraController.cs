@@ -5,7 +5,8 @@ namespace Controls
 {
     public class CameraController : MonoBehaviour
     {
-        [SerializeField] private float followSpeed = 0.7f;
+        [SerializeField] private float followSpeedDefault = 0.7f;
+        [SerializeField] private float followSpeedFast = 0.25f;
         [SerializeField] private float xOffset = 5f;
         [SerializeField] private float yOffsetUp = 0.5f;
         [SerializeField] private float yOffsetDown = -10f;
@@ -14,6 +15,7 @@ namespace Controls
         [SerializeField] private float yOffsetLookDown = -5f;
 
         [SerializeField] private Transform player;
+        [SerializeField] private Rigidbody2D playerRigidbody;
 
         private bool _xOffsetFlipped;
         private bool _yOffsetFlipped;
@@ -53,6 +55,14 @@ namespace Controls
             {
                 xOffsetCamera = -xOffset;
                 yOffsetCamera = yOffsetDown;
+            }
+
+            var magnitude = playerRigidbody.velocity.magnitude;
+            var followSpeed = followSpeedDefault;
+
+            if (magnitude > 25.0f)
+            {
+                followSpeed = followSpeedFast;
             }
 
             if (look > 0.1f)

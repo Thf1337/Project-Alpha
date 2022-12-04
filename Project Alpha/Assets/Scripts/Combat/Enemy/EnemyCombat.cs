@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using General.Interfaces;
+using UnityEngine;
 
 namespace Combat.Enemy
 {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using General.Interfaces;
 using UnityEngine;
 
 namespace Combat.Weapons

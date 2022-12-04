@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using General.Interfaces;
+using UnityEngine;
 
 namespace Combat
 {
@@ -12,7 +13,7 @@ namespace Combat
     
         protected float MaxHealth;
         
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             MaxHealth = CalculateMaxHealth();
             health = MaxHealth;
@@ -21,7 +22,7 @@ namespace Combat
         private float CalculateMaxHealth()
         {
             return baseMaxHealth + baseMaxHealth * maxHealthMultiplier;
-        }
+        }                                       
 
         public float GetMaxHealth()
         {

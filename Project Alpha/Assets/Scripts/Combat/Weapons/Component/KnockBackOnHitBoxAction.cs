@@ -1,5 +1,6 @@
 ﻿using Combat.Weapons.Component.ComponentData;
 using Controls;
+using General.Interfaces;
 using UnityEngine;
 
 namespace Combat.Weapons.Component

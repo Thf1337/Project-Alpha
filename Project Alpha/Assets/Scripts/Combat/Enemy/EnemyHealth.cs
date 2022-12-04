@@ -4,9 +4,9 @@ namespace Combat.Enemy
 {
     public class EnemyHealth : Health
     {
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
         }
 
         public override void Heal(float heal)

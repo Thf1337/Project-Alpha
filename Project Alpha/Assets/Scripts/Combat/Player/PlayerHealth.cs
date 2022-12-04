@@ -7,9 +7,9 @@ namespace Combat.Player
     {
         [SerializeField] private HealthBar healthBar;
 
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
         
             healthBar.SetMaxHealth(MaxHealth);
             healthBar.SetHealth(health);
