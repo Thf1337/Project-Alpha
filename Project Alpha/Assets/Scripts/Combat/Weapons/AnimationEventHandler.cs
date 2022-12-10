@@ -11,6 +11,7 @@ namespace Combat.Weapons
         public event Action OnStopMovement;
         public event Action OnEnableFlip;
         public event Action OnDisableFlip;
+        public event Action OnMinHold;
     
         private void AnimationFinishedTrigger() => OnFinish?.Invoke();
 
@@ -23,5 +24,7 @@ namespace Combat.Weapons
         private void EnableFlipTrigger() => OnEnableFlip?.Invoke();
         
         private void DisableFlipTrigger() => OnDisableFlip?.Invoke();
+        
+        private void MinHoldTrigger() => OnMinHold?.Invoke();
     }
 }

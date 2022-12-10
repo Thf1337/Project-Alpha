@@ -1,5 +1,6 @@
 using System;
 using General.Interfaces;
+using Powerup;
 using UnityEngine;
 
 namespace Environment
@@ -7,6 +8,7 @@ namespace Environment
     public class Chest : MonoBehaviour, IInteractable
     {
         [SerializeField] private UnityEngine.Object itemRef;
+        [SerializeField] private LootTable lootTable;
         
         [SerializeField] private Sprite closedSprite;
         [SerializeField] private Sprite openSprite;
@@ -45,8 +47,9 @@ namespace Environment
                 _spriteRenderer.sprite = openSprite;
                 
                 var position = transform.position;
-                var item = (GameObject) Instantiate(itemRef);
-                item.transform.position = new Vector2(position.x, position.y + 1);
+                var item = lootTable.GetRandomItem();
+                var itemInstantiate = Instantiate(item);
+                itemInstantiate.transform.position = new Vector2(position.x, position.y + 1);
             }
         }
     }

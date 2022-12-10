@@ -1,20 +1,37 @@
 using System;
 using System.Collections.Generic;
 using General.Interfaces;
+using Powerup;
 using UnityEngine;
 
 namespace Combat.Weapons
 {
-    public class Weapon : MonoBehaviour
+    public class Weapon : Item
     {
         public event Action OnExit;
         public event Action OnEnter;
+        public event Action<bool> OnInputChange;
         
         
         public GameObject BaseGameObject { get; private set; }  
         public GameObject WeaponSpriteGameObject { get; private set; }
         
         public bool IsFlipped { get; private set; }
+        
+        public Animator Animator { get; private set; }
+        
+        private bool _currentInput;
+
+        public bool CurrentInput
+        {
+            get => _currentInput;
+            private set
+            {
+                if (value != _currentInput)
+                    OnInputChange?.Invoke(value);
+                _currentInput = value;
+            }
+        }
 
         [field: SerializeField] public WeaponDataSO Data { get; private set; }
         [SerializeField] private float attackCounterResetCooldown;
@@ -27,7 +44,6 @@ namespace Combat.Weapons
         }
       
         private SpriteRenderer _spriteRenderer;
-        private Animator _animator;
         private static readonly int Active = Animator.StringToHash("active");
         private static readonly int Counter = Animator.StringToHash("counter");
 
@@ -37,12 +53,14 @@ namespace Combat.Weapons
         private General.Utilities.Timer _attackCounterResetTimer;
 
         private List<IDamagable> detectedDamageables = new List<IDamagable>();
+        
+        public void SetInput(bool input) => CurrentInput = input;
 
         public void EnterPrimary(float attackSpeed)
         {
-            if (_animator.GetBool(Active))
+            if (Animator.GetBool(Active))
             {
-                _animator.SetBool(Active, false);
+                Animator.SetBool(Active, false);
                 OnExit?.Invoke();
                 return;
             }
@@ -59,11 +77,12 @@ namespace Combat.Weapons
             }
         
             _attackCounterResetTimer.StopTimer();
-            _animator.speed = attackSpeed;
-            _animator.SetBool(Active, true);
-            _animator.SetInteger(Counter, CurrentAttackCounter);
+            Animator.speed = attackSpeed;
+            Animator.SetBool(Active, true);
+            Animator.SetInteger(Counter, CurrentAttackCounter);
             
             OnEnter?.Invoke();
+            OnInputChange?.Invoke(CurrentInput);
         }
     
         public void EnterSecondary()
@@ -73,7 +92,7 @@ namespace Combat.Weapons
 
         private void Exit()
         {
-            _animator.SetBool(Active, false);
+            Animator.SetBool(Active, false);
             CurrentAttackCounter++;
             _attackCounterResetTimer.StartTimer();
         
@@ -86,7 +105,7 @@ namespace Combat.Weapons
             WeaponSpriteGameObject = transform.Find("WeaponSprite").gameObject;
             
             _spriteRenderer = BaseGameObject.GetComponent<SpriteRenderer>();
-            _animator = BaseGameObject.GetComponent<Animator>();
+            Animator = BaseGameObject.GetComponent<Animator>();
             _eventHandler = BaseGameObject.GetComponent<AnimationEventHandler>();
         
             _attackCounterResetTimer = new General.Utilities.Timer(attackCounterResetCooldown);
@@ -130,5 +149,12 @@ namespace Combat.Weapons
                 detectedDamageables.Remove(damageable);
             }
         }
+    }
+    
+    public enum WeaponBoolAnimParameters
+    {
+        Active,
+        Hold,
+        Cancel,
     }
 }

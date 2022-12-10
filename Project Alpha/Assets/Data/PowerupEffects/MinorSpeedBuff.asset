@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5b66b7e3569ef4e9356be98b968346, type: 3}
   m_Name: MinorSpeedBuff
   m_EditorClassIdentifier: 
-  amount: 5
+  addMoveSpeed: 10
+  addMoveSpeedMultiplier: 0.1

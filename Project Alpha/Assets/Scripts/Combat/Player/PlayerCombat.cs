@@ -45,6 +45,7 @@ namespace Combat.Player
             _isAttacking = true;
             _movement.isAbilityDone = false;
             _spriteRenderer.enabled = false;
+            //_weapon.SetInput(player.InputHandler.AttackInputsHold[(int) inputIndex]);
             weaponFunction?.Invoke();
         }
 

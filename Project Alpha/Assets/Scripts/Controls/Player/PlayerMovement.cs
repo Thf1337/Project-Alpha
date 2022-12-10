@@ -11,8 +11,8 @@ namespace Controls
 
         [SerializeField] private CameraController cameraController;
 
-        private TrailRenderer _trailRenderer;
-    
+        private AfterImage _afterImage;
+
         private float _jumpTimeCounter;
 
         private bool _canDrop;
@@ -21,7 +21,7 @@ namespace Controls
         {
             base.Start();
             
-            _trailRenderer = GetComponent<TrailRenderer>();
+            _afterImage = GetComponent<AfterImage>();
         }
 
         private void Update()
@@ -72,18 +72,14 @@ namespace Controls
         
             if (Input.GetButtonDown("Dash") && CanDash)
             {
-                _trailRenderer.emitting = true;
+
+                _afterImage.Activate(true);
                 Dash(dashingTime);
             }
 
             if (isDashing)
             {
                 Rigidbody.velocity = DashingDirection.normalized * dashingVelocity;
-            }
-
-            if (Jumps == jumpAmount)
-            {
-                CanDash = true;
             }
 
             UpdateAnimationState();
@@ -132,31 +128,47 @@ namespace Controls
         {
             yield return base.StopDashing(dashingTime);
 
-            _trailRenderer.emitting = false;
+            _afterImage.Activate(false);
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
             BoxCollider.isTrigger = false;
         }
 
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            foreach (ContactPoint2D hitPosition in collision.contacts)
+            {
+                // Check if its collided on top 
+                if (hitPosition.normal.x != 0 && hitPosition.normal.y > 0)
+                {
+                    CanDash = true;
+                    return;
+                }
+            }
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (Jumps == jumpAmount)
-            {
-                cameraController.UnflipYOffset();
-                return;
-            }
-
             if(collision.gameObject.CompareTag("Platform"))
             {
                 _canDrop = true;
             }
-            else if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Enemy"))
+            else if (collision.gameObject.CompareTag("Ground") 
+                     || collision.gameObject.CompareTag("Enemy") 
+                     || collision.gameObject.CompareTag("Interactable"))
             {
                 _canDrop = false;
             }
             else
             {
+                return;
+            }
+            
+            if (Jumps == jumpAmount)
+            {
+                cameraController.UnflipYOffset();
+                CanDash = true;
                 return;
             }
         
@@ -166,7 +178,9 @@ namespace Controls
                 if (hitPosition.normal.x != 0 && hitPosition.normal.y > 0)
                 {
                     cameraController.UnflipYOffset();
+                    CanDash = true;
                     Jumps = jumpAmount;
+                    return;
                 }
             }
         }
