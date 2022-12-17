@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Combat.Weapons.Component.ComponentData;
+using UnityEngine;
 
 namespace Combat.Weapons.Component
 {

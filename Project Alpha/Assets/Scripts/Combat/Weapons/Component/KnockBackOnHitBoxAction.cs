@@ -1,15 +1,14 @@
 ﻿using Combat.Weapons.Component.ComponentData;
+using Combat.Weapons.Component.ComponentData.AttackData;
 using Controls;
 using General.Interfaces;
 using UnityEngine;
 
 namespace Combat.Weapons.Component
 {
-    public class KnockBackOnHitBoxAction : WeaponComponent
+    public class KnockBackOnHitBoxAction : WeaponComponent<WeaponKnockBackData, AttackKnockBack>
     {
         private WeaponActionHitBox _actionHitBox;
-
-        private WeaponKnockBackData _data;
 
         private void HandleDetected(Collider2D[] detected)
         {
@@ -19,8 +18,8 @@ namespace Combat.Weapons.Component
 
                 if (itemKnockBack == null) continue;
                 
-                var knockBackData = new KnockBackData(_data.KnockBackAngle[Weapon.CurrentAttackCounter],
-                    _data.KnockBackStrength[Weapon.CurrentAttackCounter], Movement.facingDirection, gameObject);
+                var knockBackData = new KnockBackData(CurrentAttackData.KnockBackAngle,
+                    CurrentAttackData.KnockBackStrength, Movement.facingDirection, gameObject);
                     
                 itemKnockBack.KnockBack(knockBackData);
             }
@@ -31,8 +30,6 @@ namespace Combat.Weapons.Component
             base.Awake();
             
             _actionHitBox = GetComponent<WeaponActionHitBox>();
-
-            _data = Weapon.Data.GetData<WeaponKnockBackData>();
         }
 
         protected override void OnEnable()

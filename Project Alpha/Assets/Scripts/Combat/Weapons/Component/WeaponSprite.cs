@@ -1,17 +1,16 @@
 using System;
 using Combat.Weapons.Component.ComponentData;
+using Combat.Weapons.Component.ComponentData.AttackData;
 using UnityEngine;
 
 namespace Combat.Weapons.Component
 {
-    public class WeaponSprite : WeaponComponent
+    public class WeaponSprite : WeaponComponent<WeaponSpriteData, AttackSprites>
     {
         private SpriteRenderer _baseSpriteRenderer;
         private SpriteRenderer _weaponSpriteRenderer;
 
         private int _currentWeaponSpriteIndex;
-
-        private WeaponSpriteData _data;
 
         protected override void HandleEnter()
         {
@@ -28,7 +27,7 @@ namespace Combat.Weapons.Component
                 return;
             }
 
-            var currentAttackSprites = _data.AttackData[Weapon.CurrentAttackCounter].Sprites;
+            var currentAttackSprites = CurrentAttackData.Sprites;
 
             if (_currentWeaponSpriteIndex >= currentAttackSprites.Length)
             {
@@ -56,8 +55,6 @@ namespace Combat.Weapons.Component
 
             _baseSpriteRenderer = transform.Find("Base").GetComponent<SpriteRenderer>();
             _weaponSpriteRenderer = transform.Find("WeaponSprite").GetComponent<SpriteRenderer>();
-
-            _data = Weapon.Data.GetData<WeaponSpriteData>();
 
             // TODO: Fix this when we create weapon data
             // _baseSpriteRenderer = Weapon.BaseGameObject.GetComponent<SpriteRenderer>();

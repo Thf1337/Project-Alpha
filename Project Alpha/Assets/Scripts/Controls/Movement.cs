@@ -8,14 +8,15 @@ namespace Controls
         [Header("Movement variables")]
         public float baseMoveSpeed;
         public float moveSpeedMultiplier;
-        public int facingDirection;
+        public int facingDirection = 1;
         public bool isAbilityDone;
         public bool canMove;
-    
+        
         [Header("Jumping")]
         public float baseJumpForce;
         public float jumpForceMultiplier;
         public float baseJumpTime;
+        public float jumpTimeMultiplier;
         public int jumpAmount;
     
         [Header("Dashing")]
@@ -24,6 +25,20 @@ namespace Controls
         public float baseDashingTime;
         public float dashingTimeMultiplier;
         public bool isDashing;
+        
+        [Header("Collision")]
+        [SerializeField] private Transform groundCheck;
+        [SerializeField] protected float groundCheckRadius;
+        [SerializeField] protected LayerMask groundLayerMask;
+
+        public Transform GroundCheck
+        {
+            get => groundCheck;
+            private set => groundCheck = value;
+        }
+        
+        public bool Ground => Physics2D.OverlapCircle(GroundCheck.position, groundCheckRadius, groundLayerMask);
+
     
         protected Vector2 DashingDirection;
         protected bool CanDash = true;
@@ -41,7 +56,7 @@ namespace Controls
         protected float DirY;
 
         protected static readonly int CurrentState = Animator.StringToHash("currentState");
-    
+
         protected virtual void Start()
         {
             canMove = true;
@@ -86,6 +101,12 @@ namespace Controls
         public void ResetJumps()
         {
             Jumps = jumpAmount;
+        }
+
+        public void SetVelocity(float velocity, Vector2 angle, int direction)
+        {
+            angle.Normalize();
+            Rigidbody.velocity = new Vector2(angle.x * velocity * direction, angle.y * velocity);
         }
 
         public void SetVelocityX(float velocity)

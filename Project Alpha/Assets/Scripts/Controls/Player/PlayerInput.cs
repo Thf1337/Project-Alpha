@@ -9,7 +9,7 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI inputHelper;
     private IInteractable _lastInteractable;
-    
+
     void Update()
     {
         if (_lastInteractable != null)

@@ -14,17 +14,11 @@ namespace Combat.Weapons
         public event Action OnMinHold;
     
         private void AnimationFinishedTrigger() => OnFinish?.Invoke();
-
         private void AttackActionTrigger() => OnAttackAction?.Invoke();
-        
         private void StartMovementTrigger() => OnStartMovement?.Invoke();
-        
         private void StopMovementTrigger() => OnStopMovement?.Invoke();
-        
         private void EnableFlipTrigger() => OnEnableFlip?.Invoke();
-        
         private void DisableFlipTrigger() => OnDisableFlip?.Invoke();
-        
         private void MinHoldTrigger() => OnMinHold?.Invoke();
     }
 }

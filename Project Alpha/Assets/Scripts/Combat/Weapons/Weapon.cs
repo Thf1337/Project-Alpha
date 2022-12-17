@@ -21,6 +21,8 @@ namespace Combat.Weapons
         public Animator Animator { get; private set; }
         
         private bool _currentInput;
+        
+        public Controls.Movement movement;
 
         public bool CurrentInput
         {
@@ -53,6 +55,11 @@ namespace Combat.Weapons
         private General.Utilities.Timer _attackCounterResetTimer;
 
         private List<IDamagable> detectedDamageables = new List<IDamagable>();
+
+        public void SetMovement(Controls.Movement movementComponent)
+        {
+            movement = movementComponent;
+        }
         
         public void SetInput(bool input) => CurrentInput = input;
 

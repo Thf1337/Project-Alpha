@@ -1,0 +1,29 @@
+﻿using UnityEngine;
+
+namespace General.Utilities
+{
+    public class VectorUtilities
+    {
+        public static float AngleFromVector2(Vector2 velocity)
+        {
+            velocity.Normalize();
+            return Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+        }
+
+        public static Vector2 Vector2FromAngle(float angle)
+        {
+            return new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+        }
+
+        public static Vector2 RotateVector2(Vector2 vector)
+        {
+            float angle = AngleFromVector2(vector);
+
+            float x2 = Mathf.Cos(angle) * vector.x - Mathf.Sin(angle) * vector.y;
+            float y2 = Mathf.Sin(angle) * vector.x + Mathf.Cos(angle) * vector.y;
+
+            return new Vector2(x2, y2);
+        }
+        
+    }
+}

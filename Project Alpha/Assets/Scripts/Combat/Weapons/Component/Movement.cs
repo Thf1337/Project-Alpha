@@ -1,11 +1,13 @@
 ﻿using Combat.Weapons.Component.ComponentData;
+using Combat.Weapons.Component.ComponentData.AttackData;
 using UnityEngine;
 
 namespace Combat.Weapons.Component
 {
-    public class AttackMovement : WeaponComponent
+    public class Movement : WeaponComponent<MovementData, AttackMovement>
     {
 
+        private Vector2 _direction;
         private float _velocity;
 
         private bool _attackMovementActive;
@@ -13,20 +15,19 @@ namespace Combat.Weapons.Component
         private bool _checkFlip;
 
         private bool _flipped;
-        
-        private AttackMovementData _data;
-    
+
 
         private void StartMovement()
         {
-            _velocity = _data.Velocity[Weapon.CurrentAttackCounter];
+            if (Movement.isDashing) return;
+            
+            _velocity = CurrentAttackData.Velocity;
+            _direction = CurrentAttackData.Direction;
 
             Movement.canMove = false;
             _attackMovementActive = true;
             
-            if (Movement.isDashing) return;
-            
-            Movement.SetVelocityX(_velocity * Movement.facingDirection);
+            Movement.SetVelocity(_velocity, _direction, Movement.facingDirection);
         }
 
         private void EnableFlip()
@@ -50,13 +51,14 @@ namespace Combat.Weapons.Component
         {
             if (_attackMovementActive && !Movement.isDashing)
             {
-                Movement.SetVelocityX(_velocity * Movement.facingDirection);
+                Movement.SetVelocity(_velocity, _direction, Movement.facingDirection);
             }
         }
 
         private void StopMovement()
         {
             _velocity = 0f;
+            _direction = Vector2.zero;
             Movement.SetVelocityX(0f);
             Movement.canMove = true;
             _attackMovementActive = false;
@@ -75,13 +77,6 @@ namespace Combat.Weapons.Component
             }
             
             _flipped = false;
-        }
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            _data = Weapon.Data.GetData<AttackMovementData>();
         }
 
         protected override void OnEnable()

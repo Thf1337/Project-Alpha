@@ -29,7 +29,7 @@ namespace Combat.Weapons
         [ContextMenu("Add Knock Back Data")]
         private void AddKnockBackData() => ComponentData.Add(new WeaponKnockBackData());
         
-        [ContextMenu("Add Attack Movement Data")]
-        private void AddAttackMovementData() => ComponentData.Add(new AttackMovementData());
+        [ContextMenu("Add Movement Data")]
+        private void AddMovementData() => ComponentData.Add(new MovementData());
     }
 }

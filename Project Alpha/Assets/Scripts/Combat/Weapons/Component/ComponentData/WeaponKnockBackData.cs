@@ -1,11 +1,10 @@
-﻿using UnityEngine;
+﻿using Combat.Weapons.Component.ComponentData.AttackData;
+using UnityEngine;
 
 namespace Combat.Weapons.Component.ComponentData
 {
-    public class WeaponKnockBackData : ComponentData
+    public class WeaponKnockBackData : ComponentData<AttackKnockBack>
     {
-        [field: SerializeField] public Vector2[] KnockBackAngle { get; private set; }
-
-        [field: SerializeField] public float[] KnockBackStrength { get; private set; }
+        
     }
 }

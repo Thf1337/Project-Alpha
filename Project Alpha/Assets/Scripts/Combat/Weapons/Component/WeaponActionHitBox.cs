@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using Combat.Weapons.Component.ComponentData;
+using Combat.Weapons.Component.ComponentData.AttackData;
 using Controls;
 using UnityEngine;
 
 namespace Combat.Weapons.Component
 {
-    public class WeaponActionHitBox : WeaponComponent
+    public class WeaponActionHitBox : WeaponComponent<WeaponHitBoxData, AttackHitBox>
     {
         public event Action<Collider2D[]> OnDetected;
 
         private Vector2 _offset;
-
-        private WeaponHitBoxData _data;
 
         private Collider2D[] _detected;
         
@@ -23,12 +22,12 @@ namespace Combat.Weapons.Component
         {
             // Set hitbox offset based on current position
             _offset.Set(
-                transform.position.x + _data.HitBox.position.x * Movement.facingDirection,
-                transform.position.y + _data.HitBox.y
+                transform.position.x + CurrentAttackData.HitBox.position.x * Movement.facingDirection,
+                transform.position.y + CurrentAttackData.HitBox.y
             );
 
             // Look for colliders in the hitbox
-            _detected = Physics2D.OverlapBoxAll(_offset, _data.HitBox.size, 0f, _data.DamageableLayers);
+            _detected = Physics2D.OverlapBoxAll(_offset, CurrentAttackData.HitBox.size, 0f, CurrentAttackData.DamageableLayers);
 
             if (_detected.Length == 0) return;
 
@@ -60,8 +59,6 @@ namespace Combat.Weapons.Component
             _offset = new Vector2();
             
             _alreadyHitIDs = new List<int>();
-
-            _data = Weapon.Data.GetData<WeaponHitBoxData>();
         }
         
         protected override void OnEnable()

@@ -19,12 +19,14 @@ namespace Combat.Player
         private void Awake()
         {
             _weapon = transform.Find("Weapon").GetComponent<Weapon>();
+            _movement = GetComponent<Movement>();
             _weapon.OnExit += ExitHandler;
+            
+            _weapon.SetMovement(_movement);
         }
 
         private void Start()
         {
-            _movement = GetComponent<Movement>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 

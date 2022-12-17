@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Combat.Weapons.Component.ComponentData
 {
-    public class WeaponSpriteData : ComponentData<AttackSprites>
+    public class MovementData : ComponentData<AttackMovement>
     {
         
     }

@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Combat.Weapons.Component.ComponentData.AttackData;
+using UnityEngine;
 
 namespace Combat.Weapons.Component.ComponentData
 {
-    public class WeaponDamageData : ComponentData
+    public class WeaponDamageData : ComponentData<AttackDamage>
     {
-        [field: SerializeField] public float[] damageAmount;
-        [field: SerializeField] public GameObject source;
+        
     }
 }

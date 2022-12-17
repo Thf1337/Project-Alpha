@@ -6,9 +6,6 @@ namespace Controls
 {
     public class PlayerMovement : Movement
     {
-        [Header("Jumping")]
-        public float jumpTimeMultiplier;
-
         [SerializeField] private CameraController cameraController;
 
         private AfterImage _afterImage;
@@ -16,7 +13,7 @@ namespace Controls
         private float _jumpTimeCounter;
 
         private bool _canDrop;
-    
+
         protected override void Start()
         {
             base.Start();
@@ -38,6 +35,17 @@ namespace Controls
             DirY = Input.GetAxisRaw("Vertical");
         
             SetVelocityX(moveSpeed * DirX);
+
+            if (!IsJumping && Ground)
+            {
+                cameraController.UnflipYOffset();
+                Jumps = jumpAmount;
+
+                if (!isDashing)
+                {
+                    CanDash = true;
+                }
+            }
 
             if (Input.GetButtonDown("Drop") && _canDrop)
             {
@@ -137,52 +145,29 @@ namespace Controls
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-            foreach (ContactPoint2D hitPosition in collision.contacts)
-            {
-                // Check if its collided on top 
-                if (hitPosition.normal.x != 0 && hitPosition.normal.y > 0)
-                {
-                    CanDash = true;
-                    return;
-                }
-            }
-        }
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
             if(collision.gameObject.CompareTag("Platform"))
             {
                 _canDrop = true;
             }
-            else if (collision.gameObject.CompareTag("Ground") 
-                     || collision.gameObject.CompareTag("Enemy") 
-                     || collision.gameObject.CompareTag("Interactable"))
+            else if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Enemy"))
             {
                 _canDrop = false;
             }
-            else
-            {
-                return;
-            }
-            
-            if (Jumps == jumpAmount)
-            {
-                cameraController.UnflipYOffset();
-                CanDash = true;
-                return;
-            }
-        
-            foreach (ContactPoint2D hitPosition in collision.contacts)
-            {
-                // Check if its collided on top 
-                if (hitPosition.normal.x != 0 && hitPosition.normal.y > 0)
-                {
-                    cameraController.UnflipYOffset();
-                    CanDash = true;
-                    Jumps = jumpAmount;
-                    return;
-                }
-            }
         }
+
+        // private void OnCollisionEnter2D(Collision2D collision)
+        // {
+        //     foreach (ContactPoint2D hitPosition in collision.contacts)
+        //     {
+        //         // Check if its collided on top 
+        //         if (hitPosition.normal.x != 0 && hitPosition.normal.y > 0)
+        //         {
+        //             cameraController.UnflipYOffset();
+        //             CanDash = true;
+        //             Jumps = jumpAmount;
+        //             return;
+        //         }
+        //     }
+        // }
     }
 }

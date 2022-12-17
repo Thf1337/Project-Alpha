@@ -18,7 +18,7 @@ MonoBehaviour:
   - rid: 4997142346569351168
   - rid: 4997142346569351169
   - rid: 4997142346569351170
-  - rid: 4997142370563391489
+  - rid: 8548000699513569280
   references:
     version: 2
     RefIds:
@@ -47,38 +47,61 @@ MonoBehaviour:
     - rid: 4997142346569351168
       type: {class: WeaponHitBoxData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
       data:
-        <DamageableLayers>k__BackingField:
-          serializedVersion: 2
-          m_Bits: 256
-        <HitBox>k__BackingField:
-          serializedVersion: 2
-          x: 1
-          y: 0.25
-          width: 2
-          height: 2.5
+        <AttackData>k__BackingField:
+        - <DamageableLayers>k__BackingField:
+            serializedVersion: 2
+            m_Bits: 256
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 1
+            y: 0.25
+            width: 2
+            height: 2.5
+        - <DamageableLayers>k__BackingField:
+            serializedVersion: 2
+            m_Bits: 256
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 1
+            y: 0.25
+            width: 2
+            height: 2.5
+        - <DamageableLayers>k__BackingField:
+            serializedVersion: 2
+            m_Bits: 256
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 1
+            y: 0.25
+            width: 2
+            height: 2.5
     - rid: 4997142346569351169
       type: {class: WeaponDamageData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
       data:
-        damageAmount:
-        - 10
-        - 15
-        - 20
-        source: {fileID: 0}
+        <AttackData>k__BackingField:
+        - damageAmount: 10
+          source: {fileID: 0}
+        - damageAmount: 15
+          source: {fileID: 0}
+        - damageAmount: 20
+          source: {fileID: 0}
     - rid: 4997142346569351170
       type: {class: WeaponKnockBackData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
       data:
-        <KnockBackAngle>k__BackingField:
-        - {x: 1, y: 1}
-        - {x: 1, y: 1}
-        - {x: 1, y: 1}
-        <KnockBackStrength>k__BackingField:
-        - 5
-        - 10
-        - 15
-    - rid: 4997142370563391489
-      type: {class: AttackMovementData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
+        <AttackData>k__BackingField:
+        - <KnockBackAngle>k__BackingField: {x: 1, y: 1}
+          <KnockBackStrength>k__BackingField: 5
+        - <KnockBackAngle>k__BackingField: {x: 1, y: 1}
+          <KnockBackStrength>k__BackingField: 10
+        - <KnockBackAngle>k__BackingField: {x: 1, y: 5}
+          <KnockBackStrength>k__BackingField: 15
+    - rid: 8548000699513569280
+      type: {class: MovementData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
       data:
-        Velocity:
-        - 4
-        - 3
-        - 2
+        <AttackData>k__BackingField:
+        - <Direction>k__BackingField: {x: 1, y: 0}
+          <Velocity>k__BackingField: 3
+        - <Direction>k__BackingField: {x: 1, y: 0}
+          <Velocity>k__BackingField: 4
+        - <Direction>k__BackingField: {x: 1, y: 5}
+          <Velocity>k__BackingField: 5

@@ -1,14 +1,13 @@
 ﻿using Combat.Weapons.Component.ComponentData;
+using Combat.Weapons.Component.ComponentData.AttackData;
 using General.Interfaces;
 using UnityEngine;
 
 namespace Combat.Weapons.Component
 {
-    public class DamageOnHitBoxAction : WeaponComponent
+    public class DamageOnHitBoxAction : WeaponComponent<WeaponDamageData, AttackDamage>
     {
         private WeaponActionHitBox _actionHitBox;
-
-        private WeaponDamageData _data;
 
         private void HandleDetected(Collider2D[] detected)
         {
@@ -16,7 +15,7 @@ namespace Combat.Weapons.Component
             {
                 var itemHealth = item.GetComponent<IDamagable>();
 
-                itemHealth?.Damage(_data.damageAmount[Weapon.CurrentAttackCounter]);
+                itemHealth?.Damage(CurrentAttackData.damageAmount);
             }
         }
 
@@ -25,8 +24,6 @@ namespace Combat.Weapons.Component
             base.Awake();
             
             _actionHitBox = GetComponent<WeaponActionHitBox>();
-
-            _data = Weapon.Data.GetData<WeaponDamageData>();
         }
 
         protected override void OnEnable()
