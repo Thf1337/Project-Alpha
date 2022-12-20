@@ -60,7 +60,7 @@ namespace Combat.Weapons
         {
             movement = movementComponent;
         }
-        
+
         public void SetInput(bool input) => CurrentInput = input;
 
         public void EnterPrimary(float attackSpeed)
@@ -109,7 +109,7 @@ namespace Combat.Weapons
         private void Awake()
         {
             BaseGameObject = transform.Find("Base").gameObject;
-            WeaponSpriteGameObject = transform.Find("WeaponSprite").gameObject;
+            WeaponSpriteGameObject = transform.Find("Weapon Sprite").gameObject;
             
             _spriteRenderer = BaseGameObject.GetComponent<SpriteRenderer>();
             Animator = BaseGameObject.GetComponent<Animator>();
@@ -121,6 +121,8 @@ namespace Combat.Weapons
         private void Update()
         {
             _attackCounterResetTimer.Tick();
+
+            SetInput(Input.GetButton("WeaponPrimary"));
         }
 
         private void ResetAttackCounter() => CurrentAttackCounter = 0;
@@ -160,8 +162,8 @@ namespace Combat.Weapons
     
     public enum WeaponBoolAnimParameters
     {
-        Active,
-        Hold,
-        Cancel,
+        active,
+        hold,
+        cancel,
     }
 }

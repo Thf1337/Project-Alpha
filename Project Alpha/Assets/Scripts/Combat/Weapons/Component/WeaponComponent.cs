@@ -11,9 +11,12 @@ namespace Combat.Weapons.Component
         protected Weapon Weapon;
         protected AnimationEventHandler EventHandler;
         protected Controls.Movement Movement => Weapon.movement;
+        protected float AttackStartTime;
 
         protected bool IsAttackActive;
 
+        protected virtual void SetStartTime() => AttackStartTime = Time.time; 
+        
         protected virtual void Awake()
         {
             Weapon = GetComponent<Weapon>();
@@ -24,6 +27,7 @@ namespace Combat.Weapons.Component
         protected virtual void HandleEnter()
         {
             IsAttackActive = true;
+            SetStartTime();
         }
 
         protected virtual void HandleExit()

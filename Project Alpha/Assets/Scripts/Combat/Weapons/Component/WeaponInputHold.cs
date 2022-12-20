@@ -17,7 +17,7 @@ namespace Combat.Weapons.Component
         private void SetParams()
         {
             if (!_input && !_minHoldPassed) return;
-            Weapon.Animator.SetBool(WeaponBoolAnimParameters.Hold.ToString(), _input);
+            Weapon.Animator.SetBool(WeaponBoolAnimParameters.hold.ToString(), _input);
         }
 
         private void Enter()

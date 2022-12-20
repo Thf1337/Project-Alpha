@@ -39,7 +39,18 @@ namespace Controls
         
         public bool Ground => Physics2D.OverlapCircle(GroundCheck.position, groundCheckRadius, groundLayerMask);
 
-    
+        public float BaseMoveSpeed => baseMoveSpeed / 10;
+
+        public float GetStat(float baseStat, float multiplier) => baseStat + baseStat * multiplier;
+
+        public float MoveSpeed => GetStat(BaseMoveSpeed, moveSpeedMultiplier);
+        public float JumpForce => GetStat(baseJumpForce, jumpForceMultiplier);
+        public float JumpTime => GetStat(baseJumpTime, jumpTimeMultiplier);
+        public float DashingVelocityX => GetStat(baseDashingVelocity.x, dashingVelocityMultiplier);
+        public float DashingVelocityY => GetStat(baseDashingVelocity.y, dashingVelocityMultiplier);
+        public Vector2 DashingVelocity => new (DashingVelocityX, DashingVelocityY);
+        public float DashingTime => GetStat(baseDashingTime, dashingTimeMultiplier);
+
         protected Vector2 DashingDirection;
         protected bool CanDash = true;
         

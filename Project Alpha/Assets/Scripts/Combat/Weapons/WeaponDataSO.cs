@@ -31,5 +31,14 @@ namespace Combat.Weapons
         
         [ContextMenu("Add Movement Data")]
         private void AddMovementData() => ComponentData.Add(new MovementData());
+        
+        [ContextMenu("Add Attack Ranged Data")]
+        private void AddAttackRangedData() => ComponentData.Add(new AttackRangedData());
+        
+        [ContextMenu("Add Weapon Draw Data")]
+        private void AddWeaponDrawData() => ComponentData.Add(new WeaponDrawData());
+        
+        [ContextMenu("Add Attachment Point Data")]
+        private void AddAttachmentPointData() => ComponentData.Add(new OptionalAttachmentPointData());
     }
 }

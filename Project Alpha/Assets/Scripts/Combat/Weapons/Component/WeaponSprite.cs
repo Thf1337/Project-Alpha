@@ -31,6 +31,7 @@ namespace Combat.Weapons.Component
 
             if (_currentWeaponSpriteIndex >= currentAttackSprites.Length)
             {
+                _currentWeaponSpriteIndex = 0;
                 Debug.LogWarning($"{Weapon.name} weapon sprites length mismatch");
                 return;
             }
@@ -54,7 +55,7 @@ namespace Combat.Weapons.Component
             base.Awake();
 
             _baseSpriteRenderer = transform.Find("Base").GetComponent<SpriteRenderer>();
-            _weaponSpriteRenderer = transform.Find("WeaponSprite").GetComponent<SpriteRenderer>();
+            _weaponSpriteRenderer = transform.Find("Weapon Sprite").GetComponent<SpriteRenderer>();
 
             // TODO: Fix this when we create weapon data
             // _baseSpriteRenderer = Weapon.BaseGameObject.GetComponent<SpriteRenderer>();

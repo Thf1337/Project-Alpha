@@ -8,7 +8,8 @@ namespace Combat.Player
 {
     public class PlayerCombat : MonoBehaviour
     {
-        public float attackSpeed = 1.0f;
+        public float attackSpeed = 1.25f;
+        public float baseDamage;
         
         private Weapon _weapon;
         private Movement _movement;

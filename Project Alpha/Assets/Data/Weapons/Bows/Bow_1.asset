@@ -13,7 +13,68 @@ MonoBehaviour:
   m_Name: Bow_1
   m_EditorClassIdentifier: 
   <NumberOfAttacks>k__BackingField: 1
-  <ComponentData>k__BackingField: []
+  <ComponentData>k__BackingField:
+  - rid: 7637623801665814528
+  - rid: 7637623801665814529
+  - rid: 7637623801665814530
+  - rid: 7637623801665814531
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 7637623801665814528
+      type: {class: WeaponSpriteData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
+      data:
+        <AttackData>k__BackingField:
+        - <Sprites>k__BackingField:
+          - {fileID: 1130502600, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+          - {fileID: 584311103, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+        - <Sprites>k__BackingField:
+          - {fileID: 584311103, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+        - <Sprites>k__BackingField:
+          - {fileID: 211849000, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+          - {fileID: -1478286936, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+          - {fileID: 137627187, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+          - {fileID: -1088634041, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+    - rid: 7637623801665814529
+      type: {class: AttackRangedData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
+      data:
+        <AttackData>k__BackingField:
+        - AttackData:
+          - offset: {x: 0.92, y: 0.2}
+            direction: {x: 1, y: 0}
+            projectileData: {fileID: 11400000, guid: 6d06a3d49789219499157b772ee75648, type: 2}
+    - rid: 7637623801665814530
+      type: {class: WeaponDrawData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
+      data:
+        <AttackData>k__BackingField:
+        - Curve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 2
+              outSlope: 2
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 0
+          DrawTime: 0.2666667
+    - rid: 7637623801665814531
+      type: {class: OptionalAttachmentPointData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
+      data:
+        <AttackData>k__BackingField:
+        - Sprite: {fileID: -2017625686, guid: 4a6d448b1da09ca40b90d59cc697ee7b, type: 3}
+          UseSprite: 1

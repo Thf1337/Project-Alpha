@@ -47,13 +47,13 @@ namespace Combat.Weapons.Component
             }
         }
 
-        private void FixedUpdate()
-        {
-            if (_attackMovementActive && !Movement.isDashing)
-            {
-                Movement.SetVelocity(_velocity, _direction, Movement.facingDirection);
-            }
-        }
+        // private void FixedUpdate()
+        // {
+        //     if (_attackMovementActive && !Movement.isDashing)
+        //     {
+        //         Movement.SetVelocity(_velocity, _direction, Movement.facingDirection);
+        //     }
+        // }
 
         private void StopMovement()
         {

@@ -24,17 +24,11 @@ namespace Controls
         private void Update()
         {
             if (!canMove) return;
-            
-            var moveSpeed = baseMoveSpeed + baseMoveSpeed * moveSpeedMultiplier;
-            var jumpForce = baseJumpForce + baseJumpForce * jumpForceMultiplier;
-            var jumpTime = baseJumpTime + baseJumpTime * jumpTimeMultiplier;
-            var dashingVelocity = baseDashingVelocity + baseDashingVelocity * dashingVelocityMultiplier;
-            var dashingTime = baseDashingTime + baseDashingTime * dashingTimeMultiplier;
         
             DirX = Input.GetAxisRaw("Horizontal");
             DirY = Input.GetAxisRaw("Vertical");
         
-            SetVelocityX(moveSpeed * DirX);
+            SetVelocityX(MoveSpeed * DirX);
 
             if (!IsJumping && Ground)
             {
@@ -56,15 +50,15 @@ namespace Controls
             if (Input.GetButtonDown("Jump") && Jumps > 0)
             {
                 _canDrop = false;
-                _jumpTimeCounter = jumpTime;
-                Jump(jumpForce);
+                _jumpTimeCounter = JumpTime;
+                Jump(JumpForce);
             }
 
             if (Input.GetButton("Jump") && IsJumping)
             {
                 if (_jumpTimeCounter > 0f)
                 {
-                    SetVelocityY(jumpForce);
+                    SetVelocityY(JumpForce);
                     _jumpTimeCounter -= Time.deltaTime;
                 }
                 else
@@ -82,12 +76,12 @@ namespace Controls
             {
 
                 _afterImage.Activate(true);
-                Dash(dashingTime);
+                Dash(DashingTime);
             }
 
             if (isDashing)
             {
-                Rigidbody.velocity = DashingDirection.normalized * dashingVelocity;
+                Rigidbody.velocity = DashingDirection.normalized * DashingVelocity;
             }
 
             UpdateAnimationState();
