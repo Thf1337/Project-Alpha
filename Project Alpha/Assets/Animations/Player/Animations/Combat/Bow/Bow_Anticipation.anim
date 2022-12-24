@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bow_Draw
+  m_Name: Bow_Anticipation
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -259,6 +259,20 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: EnableOptionalSpriteTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: EnterAttackPhaseTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: DisableFlipTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

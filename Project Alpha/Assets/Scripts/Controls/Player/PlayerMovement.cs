@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
+using General.Interfaces;
 using UnityEngine;
 
 namespace Controls
 {
-    public class PlayerMovement : Movement
+    public class PlayerMovement : Movement, IKnockBackable
     {
         [SerializeField] private CameraController cameraController;
 
@@ -21,14 +22,16 @@ namespace Controls
             _afterImage = GetComponent<AfterImage>();
         }
 
+        public void KnockBack(KnockBackData data)
+        {
+            data.Angle.Normalize();
+            Rigidbody.velocity = new Vector2(data.Strength * data.Angle.x * data.Direction, data.Strength * data.Angle.y);
+        }
+
         private void Update()
         {
-            if (!canMove) return;
-        
             DirX = Input.GetAxisRaw("Horizontal");
             DirY = Input.GetAxisRaw("Vertical");
-        
-            SetVelocityX(MoveSpeed * DirX);
 
             if (!IsJumping && Ground)
             {
@@ -40,6 +43,10 @@ namespace Controls
                     CanDash = true;
                 }
             }
+            
+            if (!canMove) return;
+        
+            SetVelocityX(MoveSpeed * DirX);
 
             if (Input.GetButtonDown("Drop") && _canDrop)
             {
@@ -74,7 +81,6 @@ namespace Controls
         
             if (Input.GetButtonDown("Dash") && CanDash)
             {
-
                 _afterImage.Activate(true);
                 Dash(DashingTime);
             }
@@ -93,15 +99,17 @@ namespace Controls
         
             MovementState currentState;
 
+            var facing = facingDirection;
+
             if (DirX > 0f)
             {
-                facingDirection = 1;
+                facing = 1;
                 currentState = MovementState.Running;
                 cameraController.UnflipXOffset();
             }
             else if (DirX < 0f)
             {
-                facingDirection = -1;
+                facing = -1;
                 currentState = MovementState.Running;
                 cameraController.FlipXOffset();
             }
@@ -122,7 +130,13 @@ namespace Controls
                 cameraController.FlipYOffset();
             }
 
-            SpriteRenderer.flipX = facingDirection < 0f;
+            if (facing != facingDirection)
+            {
+                Flip();
+            }
+
+            
+            // SpriteRenderer.flipX = facingDirection < 0f;
             Animator.SetInteger(CurrentState, (int) currentState);
         }
 

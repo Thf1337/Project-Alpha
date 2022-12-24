@@ -1,4 +1,5 @@
-﻿using General.Interfaces;
+﻿using Combat.Weapons.Component.ComponentData.AttackData;
+using General.Interfaces;
 using UnityEngine;
 
 namespace Combat
@@ -34,11 +35,11 @@ namespace Combat
             health += heal;
         }
 
-        public virtual void Damage(float damage)
+        public virtual void Damage(AttackDamage attackDamage)
         {
             if (invulnerable) return;
             
-            health -= damage;
+            health -= attackDamage.damageAmount;
         }
 
         public virtual void AddMaxHealth(float addMaxHealth, float addMaxHealthMultiplier, bool healHealth) {

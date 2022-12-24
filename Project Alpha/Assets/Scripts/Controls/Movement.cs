@@ -11,6 +11,7 @@ namespace Controls
         public int facingDirection = 1;
         public bool isAbilityDone;
         public bool canMove;
+        public bool canFlip;
         
         [Header("Jumping")]
         public float baseJumpForce;
@@ -130,11 +131,20 @@ namespace Controls
             Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, velocity);
         }
 
+        public void EnableFlip()
+        {
+            canFlip = true;
+        }
+
+        public void DisableFlip()
+        {
+            canFlip = false;
+        }
+
         public bool CheckFlip()
         {
-            if (DirX != 0f && DirX < facingDirection)
+            if (canFlip && DirX != 0f && DirX != facingDirection)
             {
-                facingDirection *= -1;
                 Flip();
                 return true;
             }
@@ -144,6 +154,7 @@ namespace Controls
 
         public void Flip()
         {
+            facingDirection *= -1;
             Rigidbody.transform.Rotate(0.0f, 180.0f, 0.0f);
         }
     }

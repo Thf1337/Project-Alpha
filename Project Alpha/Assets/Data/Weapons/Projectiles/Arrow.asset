@@ -15,8 +15,105 @@ MonoBehaviour:
   <ProjectilePrefab>k__BackingField: {fileID: 7820469093592983743, guid: b50b091b9e0730b4190ab0dd5662dcf8, type: 3}
   <InteractableLayers>k__BackingField:
     serializedVersion: 2
-    m_Bits: 320
-  <ComponentData>k__BackingField: []
+    m_Bits: 256
+  <ComponentData>k__BackingField:
+  - rid: 8548000831775965184
+  - rid: 8548000831775965185
+  - rid: 8548000831775965186
+  - rid: 8548000831775965187
+  - rid: 8548000831775965188
+  - rid: 8548000831775965189
+  - rid: 8548000831775965190
+  - rid: 8548000831775965191
+  - rid: 8548000831775965192
+  - rid: 8548000831775965193
+  - rid: 8548000831775965194
+  - rid: 8548000831775965270
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 8548000831775965184
+      type: {class: ProjectileMovementData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
+      data:
+        name: ProjectileMovementData
+        ApplyContinuously: 0
+        Velocity: 29
+    - rid: 8548000831775965185
+      type: {class: ProjectileGraphicsControllerData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
+      data:
+        name: ProjectileGraphicsControllerData
+        ProjectileSprite: {fileID: -2017625686, guid: 4a6d448b1da09ca40b90d59cc697ee7b, type: 3}
+    - rid: 8548000831775965186
+      type: {class: DelayedGravityData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
+      data:
+        name: DelayedGravityData
+        Gravity: 5
+        DistanceDelay: 7
+        TimeDelay: -1
+    - rid: 8548000831775965187
+      type: {class: RotateTowardsMovementData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
+      data:
+        name: RotateTowardsMovementData
+    - rid: 8548000831775965188
+      type: {class: HitboxData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
+      data:
+        name: HitboxData
+        Hitbox:
+          serializedVersion: 2
+          x: -1.1
+          y: -0.15625
+          width: 1.4
+          height: 0.3125
+        CompensateForVelocity: 1
+        LayerMask:
+          serializedVersion: 2
+          m_Bits: 384
+        DoInitialCheck: 1
+    - rid: 8548000831775965189
+      type: {class: StickInEnvironmentData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
+      data:
+        name: StickInEnvironmentData
+        LayerMask:
+          serializedVersion: 2
+          m_Bits: 64
+    - rid: 8548000831775965190
+      type: {class: HitLineData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
+      data:
+        name: HitLineData
+        LayerMask:
+          serializedVersion: 2
+          m_Bits: 64
+        DoInitialCheck: 1
+    - rid: 8548000831775965191
+      type: {class: ProjectileDamageData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
+      data:
+        name: ProjectileDamageData
+        DamageAmount: 10
+        LayerMask:
+          serializedVersion: 2
+          m_Bits: 384
+    - rid: 8548000831775965192
+      type: {class: GravityDelayDrawModifierData, ns: Combat.Projectiles.Modifier, asm: Assembly-CSharp}
+      data:
+        name: GravityDelayDrawModifierData
+    - rid: 8548000831775965193
+      type: {class: DisableDamageOnStickData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
+      data:
+        name: DisableDamageOnStickData
+    - rid: 8548000831775965194
+      type: {class: DespawnProjectileOnStickData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
+      data:
+        name: DespawnProjectileOnStickData
+        <DespawnTime>k__BackingField: 5
+    - rid: 8548000831775965270
+      type: {class: ProjectileKnockBackData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
+      data:
+        name: ProjectileKnockBackData
+        LayerMask:
+          serializedVersion: 2
+          m_Bits: 384
+        KnockBackData:
+          Angle: {x: 0, y: 1}
+          Strength: 50
+          Direction: 1
+          Source: {fileID: 0}

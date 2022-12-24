@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Combat.Weapons;
 using Controls;
+using General.Interfaces;
 using UnityEngine;
 
 namespace Combat.Player

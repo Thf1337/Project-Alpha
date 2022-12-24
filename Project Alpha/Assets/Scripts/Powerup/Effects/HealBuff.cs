@@ -1,5 +1,6 @@
 ﻿using Combat;
 using Combat.Player;
+using Combat.Weapons.Component.ComponentData.AttackData;
 using UnityEngine;
 
 namespace Powerup.Effects
@@ -23,7 +24,9 @@ namespace Powerup.Effects
             PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
 
             float damage = healAmount + playerHealth.GetMaxHealth() * healPercentage;
-            playerHealth.Damage(damage);
+            var attackDamage = new AttackDamage();
+            attackDamage.SetData(null, damage);
+            playerHealth.Damage(attackDamage);
         }
     
     }

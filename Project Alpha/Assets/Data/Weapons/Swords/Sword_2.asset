@@ -26,24 +26,30 @@ MonoBehaviour:
       type: {class: WeaponSpriteData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
       data:
         <AttackData>k__BackingField:
-        - <Sprites>k__BackingField:
-          - {fileID: 164609035, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-          - {fileID: -1363927937, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-          - {fileID: -719173531, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-          - {fileID: 1080259565, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-          - {fileID: -882308724, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-        - <Sprites>k__BackingField:
-          - {fileID: 1420357415, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-          - {fileID: -1538875148, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-          - {fileID: 833144913, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-          - {fileID: 854595749, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-          - {fileID: 2118017077, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-        - <Sprites>k__BackingField:
-          - {fileID: 616983020, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-          - {fileID: 480953540, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-          - {fileID: 1136924500, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-          - {fileID: -2012056274, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
-          - {fileID: -1004144477, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+        - <AttackPhases>k__BackingField:
+          - <Phase>k__BackingField: 2
+            <Sprites>k__BackingField:
+            - {fileID: 164609035, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+            - {fileID: -1363927937, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+            - {fileID: -719173531, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+            - {fileID: 1080259565, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+            - {fileID: -882308724, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+        - <AttackPhases>k__BackingField:
+          - <Phase>k__BackingField: 2
+            <Sprites>k__BackingField:
+            - {fileID: 1420357415, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+            - {fileID: -1538875148, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+            - {fileID: 833144913, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+            - {fileID: 854595749, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+            - {fileID: 2118017077, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+        - <AttackPhases>k__BackingField:
+          - <Phase>k__BackingField: 2
+            <Sprites>k__BackingField:
+            - {fileID: 616983020, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+            - {fileID: 480953540, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+            - {fileID: 1136924500, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+            - {fileID: -2012056274, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
+            - {fileID: -1004144477, guid: c8ebfead39c11b34594bad945fdee99a, type: 3}
     - rid: 4997142346569351168
       type: {class: WeaponHitBoxData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
       data:
@@ -89,12 +95,21 @@ MonoBehaviour:
       type: {class: WeaponKnockBackData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
       data:
         <AttackData>k__BackingField:
-        - <KnockBackAngle>k__BackingField: {x: 1, y: 1}
-          <KnockBackStrength>k__BackingField: 5
-        - <KnockBackAngle>k__BackingField: {x: 1, y: 1}
-          <KnockBackStrength>k__BackingField: 10
-        - <KnockBackAngle>k__BackingField: {x: 1, y: 5}
-          <KnockBackStrength>k__BackingField: 15
+        - KnockBackData:
+            Angle: {x: 0, y: 0}
+            Strength: 0
+            Direction: 0
+            Source: {fileID: 0}
+        - KnockBackData:
+            Angle: {x: 0, y: 0}
+            Strength: 0
+            Direction: 0
+            Source: {fileID: 0}
+        - KnockBackData:
+            Angle: {x: 0, y: 0}
+            Strength: 0
+            Direction: 0
+            Source: {fileID: 0}
     - rid: 8548000699513569280
       type: {class: MovementData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
       data:

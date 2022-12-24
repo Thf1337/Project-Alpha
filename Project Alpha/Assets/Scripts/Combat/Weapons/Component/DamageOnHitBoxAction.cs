@@ -15,7 +15,7 @@ namespace Combat.Weapons.Component
             {
                 var itemHealth = item.GetComponent<IDamagable>();
 
-                itemHealth?.Damage(CurrentAttackData.damageAmount);
+                itemHealth?.Damage(CurrentAttackData);
             }
         }
 

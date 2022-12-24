@@ -38,5 +38,14 @@ namespace Combat.Weapons
 
             return dependencies;
         }
+        
+#if UNITY_EDITOR
+        public void AddDataComponent<T>(T data) where T : ProjectileComponentData
+        {
+            if (ComponentData.FirstOrDefault(item => item.GetType() == data.GetType()) != null) return;
+            ComponentData.Add(data);
+        }
+#endif
+        
     }
 }

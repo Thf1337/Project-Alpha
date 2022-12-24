@@ -7,17 +7,16 @@ namespace Combat.Weapons.Component
 {
     public class WeaponDraw : WeaponComponent<WeaponDrawData, AttackDraw>
     {
-        private WeaponModifiers weaponModifiers;
-        private DrawModifier drawModifier = new DrawModifier();
+        private WeaponModifiers _weaponModifiers;
+        private DrawModifier _drawModifier = new DrawModifier();
         
-    
         private void HandleInputChange(bool value)
         {
             if (!value)
             {
                 var evaluatedValue = CurrentAttackData.Curve.Evaluate(Mathf.Clamp((Time.time - AttackStartTime) / CurrentAttackData.DrawTime, 0f, 1f));
-                drawModifier.ModifierValue = evaluatedValue;
-                weaponModifiers.AddModifier(drawModifier);
+                _drawModifier.ModifierValue = evaluatedValue;
+                _weaponModifiers.AddModifier(_drawModifier);
             }
         }
 
@@ -25,14 +24,14 @@ namespace Combat.Weapons.Component
         {
             base.Awake();
 
-            weaponModifiers = GetComponent<WeaponModifiers>();
+            _weaponModifiers = GetComponent<WeaponModifiers>();
         }
 
         public override void SetReferences()
         {
             base.SetReferences();
 
-            weaponModifiers = GetComponent<WeaponModifiers>();
+            _weaponModifiers = GetComponent<WeaponModifiers>();
         }
 
 

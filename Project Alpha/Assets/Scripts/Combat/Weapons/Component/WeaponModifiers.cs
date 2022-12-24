@@ -9,7 +9,9 @@ namespace Combat.Weapons.Component
 {
     public class WeaponModifiers : WeaponComponent
     {
-        [field: SerializeReference] public List<AttackModifier> Modifiers { get; private set; } = new List<AttackModifier>();
+        [SerializeReference] private List<AttackModifier> modifiers = new List<AttackModifier>();
+        
+        public List<AttackModifier> Modifiers { get => modifiers; private set => modifiers = value; }
 
         private RangedWeaponAttack _attackRanged;
 
@@ -36,10 +38,16 @@ namespace Combat.Weapons.Component
             }
         }
 
+        protected override void Awake()
+        {
+            base.Awake();
+            _attackRanged = GetComponent<RangedWeaponAttack>();
+        }
+
         public override void SetReferences()
         {
             base.SetReferences();
-            _attackRanged = GetComponent<RangedWeaponAttack>();
+            // _attackRanged = GetComponent<RangedWeaponAttack>();
         }
 
         protected override  void OnEnable()
@@ -47,17 +55,23 @@ namespace Combat.Weapons.Component
             base.OnEnable();
       
             Weapon.OnExit += ResetModifiers;
-
-            if (_attackRanged) _attackRanged.OnProjectileSpawned += SendModifiersToProjectiles;
+            
+            if (_attackRanged)
+            {
+                _attackRanged.OnProjectileSpawned -= SendModifiersToProjectiles;
+            }
         }
 
         protected override  void OnDisable()
         {
             base.OnDisable();
-      
+            
             Weapon.OnExit += ResetModifiers;
-
-            if (_attackRanged) _attackRanged.OnProjectileSpawned -= SendModifiersToProjectiles;
+            
+            if (_attackRanged)
+            {
+                _attackRanged.OnProjectileSpawned -= SendModifiersToProjectiles;
+            }
         }
     }
 }

@@ -21,8 +21,8 @@ namespace Combat.Weapons.Component
         {
             base.SetReferences();
       
-            _optionalSpriteRenderer = transform.Find("Base/Optional Sprite")?.GetComponent<SpriteRenderer>();
-            _optionalSpriteRenderer.enabled = false;
+            // _optionalSpriteRenderer = transform.Find("Base/Optional Sprite")?.GetComponent<SpriteRenderer>();
+            // _optionalSpriteRenderer.enabled = false;
         }
 
         private void Enter()

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Combat.Weapons.Component.ComponentData;
 using Combat.Weapons.Component.ComponentData.AttackData;
 using UnityEngine;
@@ -12,10 +13,18 @@ namespace Combat.Weapons.Component
 
         private int _currentWeaponSpriteIndex;
 
+        private Phase _currentAttackPhase = Phase.Anticipation;
+
         protected override void HandleEnter()
         {
             base.HandleEnter();
             
+            _currentWeaponSpriteIndex = 0;
+        }
+
+        private void SetPhase(Phase phase)
+        {
+            _currentAttackPhase = phase;
             _currentWeaponSpriteIndex = 0;
         }
         
@@ -27,9 +36,16 @@ namespace Combat.Weapons.Component
                 return;
             }
 
-            var currentAttackSprites = CurrentAttackData.Sprites;
+            var attackPhaseSprites = CurrentAttackData.AttackPhases;
+            var sprites = attackPhaseSprites.FirstOrDefault(attack => attack.Phase == _currentAttackPhase)
+                ?.Sprites;
 
-            if (_currentWeaponSpriteIndex >= currentAttackSprites.Length)
+            if (sprites == null)
+            {
+                return;
+            }
+
+            if (_currentWeaponSpriteIndex >= sprites.Length)
             {
                 _currentWeaponSpriteIndex = 0;
                 Debug.LogWarning($"{Weapon.name} weapon sprites length mismatch");
@@ -45,7 +61,7 @@ namespace Combat.Weapons.Component
                 _weaponSpriteRenderer.flipX = false;
             }
             
-            _weaponSpriteRenderer.sprite = currentAttackSprites[_currentWeaponSpriteIndex];
+            _weaponSpriteRenderer.sprite = sprites[_currentWeaponSpriteIndex];
             
             _currentWeaponSpriteIndex++;
         }
@@ -69,6 +85,7 @@ namespace Combat.Weapons.Component
             _baseSpriteRenderer.RegisterSpriteChangeCallback(HandleBaseSpriteChange);
             
             Weapon.OnEnter += HandleEnter;
+            EventHandler.OnEnterAttackPhase += SetPhase;
         }
 
         protected override void OnDisable()
@@ -78,6 +95,7 @@ namespace Combat.Weapons.Component
             _baseSpriteRenderer.UnregisterSpriteChangeCallback(HandleBaseSpriteChange);
             
             Weapon.OnEnter -= HandleEnter;
+            EventHandler.OnEnterAttackPhase -= SetPhase;
         }
     }
 }

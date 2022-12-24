@@ -25,16 +25,20 @@ MonoBehaviour:
       type: {class: WeaponSpriteData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
       data:
         <AttackData>k__BackingField:
-        - <Sprites>k__BackingField:
-          - {fileID: 1130502600, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
-          - {fileID: 584311103, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
-        - <Sprites>k__BackingField:
-          - {fileID: 584311103, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
-        - <Sprites>k__BackingField:
-          - {fileID: 211849000, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
-          - {fileID: -1478286936, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
-          - {fileID: 137627187, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
-          - {fileID: -1088634041, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+        - <AttackPhases>k__BackingField:
+          - <Phase>k__BackingField: 0
+            <Sprites>k__BackingField:
+            - {fileID: 1130502600, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+            - {fileID: 584311103, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+          - <Phase>k__BackingField: 1
+            <Sprites>k__BackingField:
+            - {fileID: 584311103, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+          - <Phase>k__BackingField: 2
+            <Sprites>k__BackingField:
+            - {fileID: 211849000, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+            - {fileID: -1478286936, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+            - {fileID: 137627187, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
+            - {fileID: -1088634041, guid: bb6acdd6ccd5bad43bc053d22d7a336f, type: 3}
     - rid: 7637623801665814529
       type: {class: AttackRangedData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
       data:

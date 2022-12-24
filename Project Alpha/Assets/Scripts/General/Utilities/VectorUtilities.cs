@@ -26,4 +26,12 @@ namespace General.Utilities
         }
         
     }
+
+    public static class LayerMaskUtilities
+    {
+        public static bool IsLayerInLayerMask(RaycastHit2D hit, LayerMask mask) =>
+            IsLayerInLayerMask(hit.collider.gameObject.layer, mask);
+
+        public static bool IsLayerInLayerMask(int layer, LayerMask mask) => ((1 << layer) & mask) > 0;
+    }
 }

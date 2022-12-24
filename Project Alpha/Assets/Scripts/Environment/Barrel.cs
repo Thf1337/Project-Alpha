@@ -1,4 +1,5 @@
 using Combat;
+using Combat.Weapons.Component.ComponentData.AttackData;
 using General.Interfaces;
 using UnityEngine;
 
@@ -17,9 +18,9 @@ namespace Environment
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        public override void Damage(float damage)
+        public override void Damage(AttackDamage attackDamage)
         {
-            base.Damage(damage);
+            base.Damage(attackDamage);
 
             if (health <= 0)
             {

@@ -17,9 +17,8 @@ namespace Combat.Weapons.Component
                 var itemKnockBack = item.GetComponent<IKnockBackable>();
 
                 if (itemKnockBack == null) continue;
-                
-                var knockBackData = new KnockBackData(CurrentAttackData.KnockBackAngle,
-                    CurrentAttackData.KnockBackStrength, Movement.facingDirection, gameObject);
+
+                var knockBackData = CurrentAttackData.KnockBackData;
                     
                 itemKnockBack.KnockBack(knockBackData);
             }

@@ -11,8 +11,7 @@ namespace Combat.Weapons
         public event Action OnExit;
         public event Action OnEnter;
         public event Action<bool> OnInputChange;
-        
-        
+
         public GameObject BaseGameObject { get; private set; }  
         public GameObject WeaponSpriteGameObject { get; private set; }
         
@@ -72,17 +71,18 @@ namespace Combat.Weapons
                 return;
             }
             
-            IsFlipped = characterSpriteRenderer.flipX;
-            
-            if (IsFlipped)
-            {
-                _spriteRenderer.flipX = true;
-            }
-            else
-            {
-                _spriteRenderer.flipX = false;
-            }
+            // IsFlipped = characterSpriteRenderer.flipX;
+            //
+            // if (IsFlipped)
+            // {
+            //     _spriteRenderer.flipX = true;
+            // }
+            // else
+            // {
+            //     _spriteRenderer.flipX = false;
+            // }
         
+            movement.canMove = false;
             _attackCounterResetTimer.StopTimer();
             Animator.speed = attackSpeed;
             Animator.SetBool(Active, true);
@@ -99,6 +99,7 @@ namespace Combat.Weapons
 
         private void Exit()
         {
+            movement.canMove = true;
             Animator.SetBool(Active, false);
             CurrentAttackCounter++;
             _attackCounterResetTimer.StartTimer();
@@ -123,19 +124,38 @@ namespace Combat.Weapons
             _attackCounterResetTimer.Tick();
 
             SetInput(Input.GetButton("WeaponPrimary"));
+
+            if (movement.canFlip)
+            {
+                movement.CheckFlip();
+            }
         }
 
         private void ResetAttackCounter() => CurrentAttackCounter = 0;
 
+        private void EnableFlip()
+        {
+            movement.EnableFlip();
+        }
+        
+        private void DisableFlip()
+        {
+            movement.DisableFlip();
+        }
+
         private void OnEnable()
         {
             _eventHandler.OnFinish += Exit;
+            _eventHandler.OnEnableFlip += EnableFlip;
+            _eventHandler.OnDisableFlip += DisableFlip;
             _attackCounterResetTimer.OnTimerDone += ResetAttackCounter;
         }
 
         private void OnDisable()
         {
             _eventHandler.OnFinish -= Exit;
+            _eventHandler.OnEnableFlip -= movement.EnableFlip;
+            _eventHandler.OnDisableFlip -= movement.DisableFlip;
             _attackCounterResetTimer.OnTimerDone -= ResetAttackCounter;
         }
 

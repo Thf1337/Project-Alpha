@@ -1,4 +1,5 @@
 using System;
+using Combat.Weapons.Component.ComponentData.AttackData;
 using UnityEngine;
 
 namespace Combat.Weapons
@@ -14,6 +15,7 @@ namespace Combat.Weapons
         public event Action OnMinHold;
         public event Action OnEnableOptionalSprite;
         public event Action OnDisableOptionalSprite;
+        public event Action<Phase> OnEnterAttackPhase;
     
         private void AnimationFinishedTrigger() => OnFinish?.Invoke();
         private void AttackActionTrigger() => OnAttackAction?.Invoke();
@@ -24,5 +26,9 @@ namespace Combat.Weapons
         private void MinHoldTrigger() => OnMinHold?.Invoke();
         private void EnableOptionalSpriteTrigger() => OnEnableOptionalSprite?.Invoke();
         private void DisableOptionalSpriteTrigger() => OnDisableOptionalSprite?.Invoke();
+        private void EnterAttackPhaseTrigger(Phase phase)
+        {
+            OnEnterAttackPhase?.Invoke(phase);
+        }
     }
 }

@@ -1,3 +1,4 @@
+using Combat.Weapons.Component.ComponentData.AttackData;
 using UI;
 using UnityEngine;
 
@@ -22,9 +23,9 @@ namespace Combat.Player
             healthBar.SetHealth(health);
         }
 
-        public override void Damage(float damage)
+        public override void Damage(AttackDamage attackDamage)
         {
-            base.Damage(damage);
+            base.Damage(attackDamage);
             
             healthBar.SetHealth(health);
         }

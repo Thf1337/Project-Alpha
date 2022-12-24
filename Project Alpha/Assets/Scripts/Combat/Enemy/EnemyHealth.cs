@@ -1,3 +1,4 @@
+using Combat.Weapons.Component.ComponentData.AttackData;
 using UnityEngine;
 
 namespace Combat.Enemy
@@ -14,10 +15,10 @@ namespace Combat.Enemy
             base.Heal(heal);
         }
 
-        public override void Damage(float damage)
+        public override void Damage(AttackDamage attackDamage)
         {
-            base.Damage(damage);
-            print($"{damage} damage");
+            base.Damage(attackDamage);
+            print($"{attackDamage.damageAmount} damage");
         }
     }
 }

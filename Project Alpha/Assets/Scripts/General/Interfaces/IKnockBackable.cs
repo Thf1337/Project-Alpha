@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Combat.Weapons.Component.ComponentData.AttackData;
+using UnityEngine;
 
 namespace General.Interfaces
 {
@@ -7,6 +9,7 @@ namespace General.Interfaces
         void KnockBack(KnockBackData data);
     }
     
+    [Serializable]
     public struct KnockBackData
     {
         public Vector2 Angle;
