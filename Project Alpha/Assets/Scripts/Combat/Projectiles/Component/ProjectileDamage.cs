@@ -6,21 +6,14 @@ using UnityEngine;
 
 namespace Combat.Projectiles.Component
 {
-    public class ProjectileDamage : ProjectileComponent<ProjectileDamageData>
+    public class ProjectileDamage : ProjectileComponent<ProjectileDamageData>, IProjectileCollisionEffect
     {
-        private IHitBox[] _hitboxes = Array.Empty<IHitBox>();
-
         private AttackDamage _damageData;
-
-        private StickInEnvironment _stickInEnvironment;
 
         public override void SetReferences()
         {
             base.SetReferences();
-
-            _hitboxes = GetComponents<IHitBox>();
-            _stickInEnvironment = GetComponent<StickInEnvironment>();
-
+            
             Data = Projectile.Data.GetComponentData<ProjectileDamageData>();
 
             _damageData = new AttackDamage();
@@ -29,38 +22,37 @@ namespace Combat.Projectiles.Component
             OnEnable();
         }
 
+        private void SetDamage()
+        {
+            _damageData.damageAmount = Data.DamageAmount + Projectile.BaseDamage;
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
-
-            foreach (var hitBox in _hitboxes)
-            {
-                hitBox.OnDetected += CheckHits;
-            }
+            
+            Projectile.OnInit += SetDamage;
         }
 
         protected override void OnDisable()
         {
             base.OnDisable();
-
-            foreach (var hitBox in _hitboxes)
-            {
-                hitBox.OnDetected -= CheckHits;
-            }
+            
+            Projectile.OnInit -= SetDamage;
         }
 
-        private void CheckHits(RaycastHit2D[] hits)
+        public bool CheckHit(RaycastHit2D hit)
         {
-            if (!Projectile.CanDamage) return;
-            foreach (var hit in hits)
+            if (!Projectile.CanDamage) return false;
+            if (!LayerMaskUtilities.IsLayerInLayerMask(hit, Data.LayerMask)) return false;
+            
+            if (CombatUtilities.CheckIfDamageable(hit, _damageData, out _))
             {
-                if (!LayerMaskUtilities.IsLayerInLayerMask(hit, Data.LayerMask)) continue;
-                if (CombatUtilities.CheckIfDamageable(hit, _damageData, out _))
-                {
-                    // Projectile.Disable();
-                    _stickInEnvironment.TriggerOnStick(hit);
-                }
+                // Projectile.Disable();
+                return true;
             }
+
+            return false;
         }
     }
 
@@ -72,6 +64,7 @@ namespace Combat.Projectiles.Component
         public ProjectileDamageData()
         {
             ComponentDependencies.Add(typeof(ProjectileDamage));
+            ComponentDependencies.Add(typeof(CollisionEffect));
         }
     }
 }

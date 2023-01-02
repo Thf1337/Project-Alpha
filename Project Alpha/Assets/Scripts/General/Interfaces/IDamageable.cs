@@ -6,6 +6,6 @@ namespace General.Interfaces
     {        
         public void Heal(float heal);
 
-        public void Damage(AttackDamage attackDamage);
+        public void Damage(AttackDamage attackDamage, bool bypassDamageReduction = false);
     }
 }

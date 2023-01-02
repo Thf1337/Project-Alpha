@@ -28,7 +28,7 @@ namespace Combat.Projectiles.Component
             _hits = Physics2D.RaycastAll(
                 transform.position,
                 transform.right,
-                Projectile.RB.velocity.magnitude * Time.deltaTime,
+                Projectile.Rigidbody.velocity.magnitude * Time.deltaTime,
                 Data.LayerMask
             );
 

@@ -48,7 +48,7 @@ namespace Environment
                 
                 var position = transform.position;
                 var item = lootTable.GetRandomItem();
-                var itemInstantiate = Instantiate(item);
+                var itemInstantiate = item.Instantiate();
                 itemInstantiate.transform.position = new Vector2(position.x, position.y + 1);
             }
         }

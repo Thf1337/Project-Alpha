@@ -14,8 +14,8 @@ namespace Combat.Enemy
         
         public void KnockBack(KnockBackData data)
         {
-            data.Angle.Normalize();
-            _rigidbody.velocity = new Vector2(data.Strength * data.Angle.x * data.Direction, data.Strength * data.Angle.y);
+            data.angle.Normalize();
+            _rigidbody.velocity = new Vector2(data.strength * data.angle.x * data.direction, data.strength * data.angle.y);
         }
     }
 }

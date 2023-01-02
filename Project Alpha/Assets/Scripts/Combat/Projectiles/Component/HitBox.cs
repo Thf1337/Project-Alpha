@@ -8,9 +8,11 @@ namespace Combat.Projectiles.Component
     {
         public event Action<RaycastHit2D[]> OnDetected;
         
-        private RaycastHit2D[] hits;
+        private RaycastHit2D[] _hits;
 
-        private Rigidbody2D rb;
+        private Rigidbody2D _rigidbody;
+
+        private bool enabled;
 
         public override void SetReferences()
         {
@@ -24,16 +26,16 @@ namespace Combat.Projectiles.Component
             base.Init();
 
             if (!Data.DoInitialCheck) return;
-            hits = Physics2D.LinecastAll(transform.position, Projectile.SpawningEntityPos, Data.LayerMask);
+            _hits = Physics2D.LinecastAll(transform.position, Projectile.SpawningEntityPos, Data.LayerMask);
 
-            if(hits.Length > 0) CheckHits();
+            if(_hits.Length > 0) CheckHits();
         }
 
         private void FixedUpdate()
         {
-            var dist = Data.CompensateForVelocity ? rb.velocity.magnitude * Time.deltaTime : 0; 
+            var dist = Data.CompensateForVelocity ? _rigidbody.velocity.magnitude * Time.deltaTime : 0; 
             
-            hits = Physics2D.BoxCastAll(
+            _hits = Physics2D.BoxCastAll(
                 transform.position + (Vector3) Data.Hitbox.center,
                 Data.Hitbox.size,
                 transform.rotation.eulerAngles.z,
@@ -42,18 +44,18 @@ namespace Combat.Projectiles.Component
                 Data.LayerMask
             );
             
-            if(hits.Length > 0) CheckHits();
+            if(_hits.Length > 0) CheckHits();
         }
 
         private void CheckHits()
         {
-            OnDetected?.Invoke(hits);
+            OnDetected?.Invoke(_hits);
         }
 
         protected override void Awake()
         {
             base.Awake();
-            rb = GetComponent<Rigidbody2D>();
+            _rigidbody = GetComponent<Rigidbody2D>();
         }
 
         private void OnDrawGizmos()

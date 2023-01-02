@@ -1,28 +1,38 @@
+using System;
 using Controls;
+using General.Interfaces;
 using UnityEngine;
 
 namespace Powerup.Effects
 {
-    [CreateAssetMenu(menuName = "Powerups/SpeedBuff")]
-    public class SpeedBuff : PowerupEffect
+    [Serializable]
+    public class SpeedBuff : PowerupComponent<SpeedBuffData>
     {
-        public float addMoveSpeed;
-        public float addMoveSpeedMultiplier;
+        private Movement _movement;
     
         public override void Apply(GameObject target)
         {
-            PlayerMovement playerMovement = target.GetComponent<PlayerMovement>();
+            _movement = target.GetComponent<Movement>();
         
-            playerMovement.baseMoveSpeed += addMoveSpeed;
-            playerMovement.moveSpeedMultiplier += addMoveSpeedMultiplier;
+            _movement.baseMoveSpeed += Data.addMoveSpeed;
+            _movement.moveSpeedMultiplier += Data.addMoveSpeedMultiplier;
         }
 
         public override void Revert(GameObject target)
         {
-            PlayerMovement playerMovement = target.GetComponent<PlayerMovement>();
-        
-            playerMovement.baseMoveSpeed -= addMoveSpeed;
-            playerMovement.moveSpeedMultiplier -= addMoveSpeedMultiplier;
+            _movement.baseMoveSpeed -= Data.addMoveSpeed;
+            _movement.moveSpeedMultiplier -= Data.addMoveSpeedMultiplier;
+        }
+    }
+
+    public class SpeedBuffData : PowerupComponentData
+    {
+        public float addMoveSpeed;
+        public float addMoveSpeedMultiplier;
+
+        public SpeedBuffData()
+        {
+            ComponentDependencies.Add(typeof(SpeedBuff));
         }
     }
 }

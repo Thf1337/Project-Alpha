@@ -1,33 +1,51 @@
-﻿using Combat;
+﻿using System;
+using Combat;
 using Combat.Player;
 using Combat.Weapons.Component.ComponentData.AttackData;
 using UnityEngine;
 
 namespace Powerup.Effects
 {
-    [CreateAssetMenu(menuName = "Powerups/HealBuff")]
-    public class HealBuff : PowerupEffect {
-    
-        public float healAmount;
-        public float healPercentage;
-    
+    [Serializable]
+    public class HealBuff : PowerupComponent<HealBuffData>
+    {
+        private Health _health;
+        
+        public override void SetReferences()
+        {
+            base.SetReferences();
+            
+            Data = Powerup.Data.GetComponentData<HealBuffData>();
+        }
+
         public override void Apply(GameObject target)
         {
-            PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
+            _health = target.GetComponent<PlayerHealth>();
 
-            float heal = healAmount + playerHealth.GetMaxHealth() * healPercentage;
-            playerHealth.Heal(heal);
+            float heal = Data.HealAmount + _health.GetMaxHealth() * Data.HealPercentage;
+            _health.Heal(heal);
+            
+            base.Apply(target);
         }
 
         public override void Revert(GameObject target)
         {
-            PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
-
-            float damage = healAmount + playerHealth.GetMaxHealth() * healPercentage;
+            float damage = Data.HealAmount + _health.GetMaxHealth() * Data.HealPercentage;
             var attackDamage = new AttackDamage();
             attackDamage.SetData(null, damage);
-            playerHealth.Damage(attackDamage);
+            _health.Damage(attackDamage, true);
         }
     
+    }
+
+    public class HealBuffData : PowerupComponentData
+    {
+        public float HealAmount;
+        public float HealPercentage;
+
+        public HealBuffData()
+        {
+            ComponentDependencies.Add(typeof(HealBuff));
+        }
     }
 }

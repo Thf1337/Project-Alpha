@@ -1,24 +1,37 @@
 using Combat;
 using Combat.Player;
+using General.Interfaces;
 using UnityEngine;
 
 namespace Powerup.Effects
 {
-    [CreateAssetMenu(menuName = "Powerups/HealthBuff")]
-    public class HealthBuff : PowerupEffect
+    public class HealthBuff : PowerupComponent<HealthBuffData>
     {
-        public float addMaxHealth;
-        public float addMaxHealthMultiplier;
-        public bool healHealth;
+        private Health _health;
     
         public override void Apply(GameObject target)
         {
-            target.GetComponent<PlayerHealth>().AddMaxHealth(addMaxHealth, addMaxHealthMultiplier, healHealth);
+            _health = target.GetComponent<PlayerHealth>();
+            _health.AddMaxHealth(Data.addMaxHealth, Data.addMaxHealthMultiplier, Data.healHealth);
+            
+            base.Apply(target);
         }
 
         public override void Revert(GameObject target)
         { 
-            target.GetComponent<PlayerHealth>().RemoveMaxHealth(addMaxHealth, addMaxHealthMultiplier);
+            _health.RemoveMaxHealth(Data.addMaxHealth, Data.addMaxHealthMultiplier);
+        }
+    }
+
+    public class HealthBuffData : PowerupComponentData
+    {
+        public float addMaxHealth;
+        public float addMaxHealthMultiplier;
+        public bool healHealth;
+
+        public HealthBuffData()
+        {
+            ComponentDependencies.Add(typeof(HealthBuff));
         }
     }
 }

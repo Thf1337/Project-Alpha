@@ -18,9 +18,9 @@ namespace Environment
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        public override void Damage(AttackDamage attackDamage)
+        public override void Damage(AttackDamage attackDamage, bool bypassDamageReduction = false)
         {
-            base.Damage(attackDamage);
+            base.Damage(attackDamage, bypassDamageReduction);
 
             if (health <= 0)
             {
@@ -39,8 +39,8 @@ namespace Environment
         
         public void KnockBack(KnockBackData data)
         {
-            data.Angle.Normalize();
-            _rigidbody.velocity = new Vector2(data.Strength * data.Angle.x * data.Direction, data.Strength * data.Angle.y);
+            data.angle.Normalize();
+            _rigidbody.velocity = new Vector2(data.strength * data.angle.x * data.direction, data.strength * data.angle.y);
         }
     }
 }

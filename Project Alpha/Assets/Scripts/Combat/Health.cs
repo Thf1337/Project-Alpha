@@ -1,4 +1,5 @@
-﻿using Combat.Weapons.Component.ComponentData.AttackData;
+﻿using System;
+using Combat.Weapons.Component.ComponentData.AttackData;
 using General.Interfaces;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ namespace Combat
         public float health;
         public float baseMaxHealth;
         public float maxHealthMultiplier;
+        
+        public float defense;
 
         public bool invulnerable;
     
@@ -23,7 +26,7 @@ namespace Combat
         private float CalculateMaxHealth()
         {
             return baseMaxHealth + baseMaxHealth * maxHealthMultiplier;
-        }                                       
+        }                                    
 
         public float GetMaxHealth()
         {
@@ -35,11 +38,22 @@ namespace Combat
             health += heal;
         }
 
-        public virtual void Damage(AttackDamage attackDamage)
+        public virtual void Damage(AttackDamage attackDamage, bool bypassDamageReduction = false)
         {
             if (invulnerable) return;
+
+            float healthBefore = health;
+
+            if (bypassDamageReduction)
+            {
+                health -= attackDamage.damageAmount;
+            }
+            else
+            {
+                health -= attackDamage.damageAmount * CalculateDamageReduction();
+            }
             
-            health -= attackDamage.damageAmount;
+            print($"{healthBefore - health} damage");
         }
 
         public virtual void AddMaxHealth(float addMaxHealth, float addMaxHealthMultiplier, bool healHealth) {
@@ -63,6 +77,16 @@ namespace Combat
             {
                 health = MaxHealth;
             }
+        }
+    
+        public virtual void AddDefense(float amount)
+        {
+            defense += amount;
+        }
+
+        public virtual float CalculateDamageReduction()
+        {
+            return (float) Math.Pow(0.05, 0.01 * defense);
         }
     }
 }

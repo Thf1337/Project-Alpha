@@ -12,18 +12,18 @@ namespace General.Interfaces
     [Serializable]
     public struct KnockBackData
     {
-        public Vector2 Angle;
-        public float Strength;
+        public Vector2 angle;
+        public float strength;
 
-        public int Direction;
-        public GameObject Source;
+        public int direction;
+        public GameObject source;
 
         public KnockBackData(Vector2 angle, float strength, int facingDirection, GameObject source)
         {
-            Angle = angle;
-            Strength = strength;
-            Direction = facingDirection;
-            Source = source;
+            this.angle = angle;
+            this.strength = strength;
+            direction = facingDirection;
+            this.source = source;
         }
     }
 }

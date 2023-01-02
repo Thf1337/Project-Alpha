@@ -15,7 +15,6 @@ namespace Combat.Projectiles
 
         public override void OnInspectorGUI()
         {
-
             ProjectileDataSO data = target as ProjectileDataSO;
 
             foreach (Type T in dataCompTypes)

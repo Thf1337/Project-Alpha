@@ -24,8 +24,8 @@ namespace Controls
 
         public void KnockBack(KnockBackData data)
         {
-            data.Angle.Normalize();
-            Rigidbody.velocity = new Vector2(data.Strength * data.Angle.x * data.Direction, data.Strength * data.Angle.y);
+            data.angle.Normalize();
+            Rigidbody.velocity = new Vector2(data.strength * data.angle.x * data.direction, data.strength * data.angle.y);
         }
 
         private void Update()

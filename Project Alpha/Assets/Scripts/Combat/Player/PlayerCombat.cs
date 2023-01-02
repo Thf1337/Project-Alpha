@@ -11,6 +11,7 @@ namespace Combat.Player
     {
         public float attackSpeed = 1.25f;
         public float baseDamage;
+        public float damageMultiplier;
         
         private Weapon _weapon;
         private Movement _movement;
@@ -25,6 +26,7 @@ namespace Combat.Player
             _weapon.OnExit += ExitHandler;
             
             _weapon.SetMovement(_movement);
+            _weapon.SetCombat(this);
         }
 
         private void Start()
@@ -58,6 +60,11 @@ namespace Combat.Player
             _movement.isAbilityDone = true;
             _spriteRenderer.enabled = true;
             _isAttacking = false;
+        }
+
+        public float CalculateDamage()
+        {
+            return baseDamage + baseDamage * damageMultiplier;
         }
     }
 }

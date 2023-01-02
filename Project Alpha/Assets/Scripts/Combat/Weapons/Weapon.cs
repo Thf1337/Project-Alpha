@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Combat.Player;
 using General.Interfaces;
 using Powerup;
 using UnityEngine;
@@ -22,6 +23,8 @@ namespace Combat.Weapons
         private bool _currentInput;
         
         public Controls.Movement movement;
+        
+        public PlayerCombat combat;
 
         public bool CurrentInput
         {
@@ -58,6 +61,11 @@ namespace Combat.Weapons
         public void SetMovement(Controls.Movement movementComponent)
         {
             movement = movementComponent;
+        }
+        
+        public void SetCombat(PlayerCombat combatComponent)
+        {
+            combat = combatComponent;
         }
 
         public void SetInput(bool input) => CurrentInput = input;

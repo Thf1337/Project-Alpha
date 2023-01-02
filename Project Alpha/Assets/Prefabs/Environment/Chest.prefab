@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d18de57f186c644ba7d1c8a415b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemRef: {fileID: 791446575725866873, guid: b69e0c1260e7c9a459c8c342be287571, type: 3}
-  lootTable: {fileID: 11400000, guid: 16c38f137d2c0434ba35f6a83a9e3839, type: 2}
+  itemRef: {fileID: 0}
+  lootTable: {fileID: 0}
   closedSprite: {fileID: 787350816, guid: b08278cb804823a498097d2152ebc267, type: 3}
   openSprite: {fileID: -1300565661, guid: b08278cb804823a498097d2152ebc267, type: 3}
   emptySprite: {fileID: -927211417, guid: b08278cb804823a498097d2152ebc267, type: 3}

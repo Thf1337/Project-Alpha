@@ -1,55 +1,53 @@
 ﻿using System;
 using Combat.Weapons.Component.ComponentData.AttackData;
+using Controls;
 using General.Interfaces;
 using General.Utilities;
 using UnityEngine;
 
 namespace Combat.Projectiles.Component
 {
-    public class ProjectileKnockBack : ProjectileComponent<ProjectileKnockBackData>
+    public class ProjectileKnockBack : ProjectileComponent<ProjectileKnockBackData>, IProjectileCollisionEffect
     {
-        private IHitBox[] _hitboxes = Array.Empty<IHitBox>();
-        
         public override void SetReferences()
         {
             base.SetReferences();
             
-            _hitboxes = GetComponents<IHitBox>();
             Data = Projectile.Data.GetComponentData<ProjectileKnockBackData>();
 
             OnEnable();
         }
 
-        private void CheckHits(RaycastHit2D[] hits)
+        public bool CheckHit(RaycastHit2D hit)
         {
-            foreach (var hit in hits)
+            if (!LayerMaskUtilities.IsLayerInLayerMask(hit, Data.LayerMask)) return false;
+            
+            if (CombatUtilities.CheckIfKnockBackable(hit, Data.KnockBackData, out _))
             {
-                if (!LayerMaskUtilities.IsLayerInLayerMask(hit, Data.LayerMask)) continue;
-                if (CombatUtilities.CheckIfKnockBackable(hit, Data.KnockBackData, out _))
-                {
-                    // Projectile.Disable();
-                }
+                // Projectile.DisableHitBox();
+                return true;
             }
+
+            return false;
+        }
+
+        private void SetDirection()
+        {
+            Data.KnockBackData.direction = Projectile.FacingDirection;
         }
         
         protected override void OnEnable()
         {
             base.OnEnable();
-        
-            foreach (var hitBox in _hitboxes)
-            {
-                hitBox.OnDetected += CheckHits;
-            }
+            
+            Projectile.OnInit += SetDirection;
         }
         
         protected override void OnDisable()
         {
             base.OnDisable();
-        
-            foreach (var hitBox in _hitboxes)
-            {
-                hitBox.OnDetected -= CheckHits;
-            }
+            
+            Projectile.OnInit -= SetDirection;
         }
     }
 
@@ -61,6 +59,7 @@ namespace Combat.Projectiles.Component
         public ProjectileKnockBackData()
         {
             ComponentDependencies.Add(typeof(ProjectileKnockBack));
+            ComponentDependencies.Add(typeof(CollisionEffect));
         }
     }
 }

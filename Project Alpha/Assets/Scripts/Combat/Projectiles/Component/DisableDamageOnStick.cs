@@ -2,17 +2,17 @@
 {
     public class DisableDamageOnStick : ProjectileComponent<DisableDamageOnStickData>
     {
-        private StickInEnvironment _stickInEnvironment;
+        private StickInLayer _stickInLayer;
         private bool _stickInEnvironmentFound;
 
         public override void SetReferences()
         {
             base.SetReferences();
 
-            _stickInEnvironmentFound = TryGetComponent(out _stickInEnvironment);
+            _stickInEnvironmentFound = TryGetComponent(out _stickInLayer);
             if (_stickInEnvironmentFound)
             {
-                _stickInEnvironment.OnStick += HandleStick;
+                _stickInLayer.OnStick += HandleStick;
             }
         }
 
@@ -25,11 +25,10 @@
         {
             base.OnDisable();
 
-            if (_stickInEnvironmentFound) _stickInEnvironment.OnStick -= HandleStick;
+            if (_stickInEnvironmentFound) _stickInLayer.OnStick -= HandleStick;
         }
     }
-
-
+    
     public class DisableDamageOnStickData : ProjectileComponentData
     {
         public DisableDamageOnStickData()

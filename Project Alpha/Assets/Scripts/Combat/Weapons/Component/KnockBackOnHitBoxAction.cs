@@ -19,6 +19,7 @@ namespace Combat.Weapons.Component
                 if (itemKnockBack == null) continue;
 
                 var knockBackData = CurrentAttackData.KnockBackData;
+                knockBackData.direction = Movement.facingDirection;
                     
                 itemKnockBack.KnockBack(knockBackData);
             }

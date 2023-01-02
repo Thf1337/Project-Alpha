@@ -146,8 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca475a49be2a8da488ca8cebb2550b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 0
   baseMaxHealth: 20
   maxHealthMultiplier: 0
+  defense: 0
   invulnerable: 0
   destructibleRef: {fileID: 7664918604963171935, guid: 57798efea7ef72c48855c9681afce21b, type: 3}

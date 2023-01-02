@@ -6,11 +6,11 @@ namespace Powerup
 {
     public class Inventory : MonoBehaviour
     {
-        public List<PowerupEffect> permanentPowerups;
+        public List<PowerupEffectSO> permanentPowerups;
 
         private void Start()
         {
-            permanentPowerups = new List<PowerupEffect>();
+            permanentPowerups = new List<PowerupEffectSO>();
         }
 
         private void RevertPowerup(int powerupID)

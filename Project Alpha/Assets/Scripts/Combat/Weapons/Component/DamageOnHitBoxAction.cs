@@ -1,4 +1,5 @@
-﻿using Combat.Weapons.Component.ComponentData;
+﻿using Combat.Player;
+using Combat.Weapons.Component.ComponentData;
 using Combat.Weapons.Component.ComponentData.AttackData;
 using General.Interfaces;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace Combat.Weapons.Component
 
         private void HandleDetected(Collider2D[] detected)
         {
+            CurrentAttackData.damageAmount += Combat.CalculateDamage();
+            
             foreach (var item in detected)
             {
                 var itemHealth = item.GetComponent<IDamagable>();

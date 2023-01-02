@@ -15,10 +15,9 @@ namespace Combat.Enemy
             base.Heal(heal);
         }
 
-        public override void Damage(AttackDamage attackDamage)
+        public override void Damage(AttackDamage attackDamage, bool bypassDamageReduction = false)
         {
-            base.Damage(attackDamage);
-            print($"{attackDamage.damageAmount} damage");
+            base.Damage(attackDamage, bypassDamageReduction);
         }
     }
 }

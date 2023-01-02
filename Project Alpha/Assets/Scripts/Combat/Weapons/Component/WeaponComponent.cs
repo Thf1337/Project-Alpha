@@ -1,4 +1,5 @@
 using System;
+using Combat.Player;
 using Combat.Weapons.Component.ComponentData;
 using Combat.Weapons.Component.ComponentData.AttackData;
 using Controls;
@@ -11,6 +12,7 @@ namespace Combat.Weapons.Component
         protected Weapon Weapon;
         protected AnimationEventHandler EventHandler;
         protected Controls.Movement Movement => Weapon.movement;
+        protected PlayerCombat Combat => Weapon.combat;
         protected float AttackStartTime;
 
         protected bool IsAttackActive;

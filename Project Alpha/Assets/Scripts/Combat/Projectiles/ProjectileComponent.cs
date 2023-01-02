@@ -25,6 +25,7 @@ namespace Combat.Projectiles
 
         protected virtual void Init()
         {
+            
         }
         
         protected virtual void OnEnable()

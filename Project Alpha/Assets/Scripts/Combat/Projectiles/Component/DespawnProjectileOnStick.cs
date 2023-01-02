@@ -5,7 +5,7 @@ namespace Combat.Projectiles.Component
 {
     public class DespawnProjectileOnStick : ProjectileComponent<DespawnProjectileOnStickData>
     {
-        private StickInEnvironment _stickInEnvironment;
+        private StickInLayer _stickInLayer;
         private bool _stickInEnvironmentFound;
 
         private TimerNotifier _despawnTimer;
@@ -14,10 +14,10 @@ namespace Combat.Projectiles.Component
         {
             base.SetReferences();
             
-            _stickInEnvironmentFound = TryGetComponent(out _stickInEnvironment);
+            _stickInEnvironmentFound = TryGetComponent(out _stickInLayer);
             if (_stickInEnvironmentFound)
             {
-                _stickInEnvironment.OnStick += HandleStick;
+                _stickInLayer.OnStick += HandleStick;
             }
         }
 
@@ -41,7 +41,7 @@ namespace Combat.Projectiles.Component
         {
             base.OnDisable();
 
-            if (_stickInEnvironmentFound) _stickInEnvironment.OnStick -= HandleStick;
+            if (_stickInEnvironmentFound) _stickInLayer.OnStick -= HandleStick;
             
             if(_despawnTimer != null) _despawnTimer.OnTimerDone -= Despawn;
         }

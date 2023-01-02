@@ -23,9 +23,9 @@ namespace Combat.Player
             healthBar.SetHealth(health);
         }
 
-        public override void Damage(AttackDamage attackDamage)
+        public override void Damage(AttackDamage attackDamage, bool bypassDamageReduction = false)
         {
-            base.Damage(attackDamage);
+            base.Damage(attackDamage, bypassDamageReduction);
             
             healthBar.SetHealth(health);
         }
