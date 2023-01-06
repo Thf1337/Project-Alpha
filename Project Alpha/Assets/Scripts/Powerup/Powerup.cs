@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Combat.Player;
 using General.Interfaces;
 using General.Utilities;
 using Powerup.Effects;
@@ -12,9 +13,11 @@ namespace Powerup
     {
         [field: SerializeField] public PowerupDataSO Data { get; private set; }
         
+        public bool applyDirectly;
+        
         private SpriteRenderer _spriteRenderer;
         private Collider2D _collider;
-        
+
         private bool _hasInteracted;
 
         public event Action<GameObject> OnPowerupPickup;
@@ -24,6 +27,8 @@ namespace Powerup
             Data = data;
             var comps = gameObject.AddDependenciesToGO<PowerupComponent>(Data.GetAllDependencies());
             comps.ForEach(item => item.SetReferences());
+
+            _spriteRenderer.sprite = data.PowerupSprite;
         }
 
         private void Awake()
@@ -31,7 +36,14 @@ namespace Powerup
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _collider = GetComponent<Collider2D>();
 
-            CreatePowerup(Data);
+            try
+            {
+                CreatePowerup(Data);
+            }
+            catch (Exception e)
+            {
+                return;
+            }
         }
 
         public bool HasInteracted()
@@ -50,12 +62,17 @@ namespace Powerup
             _spriteRenderer.enabled = false;
             _collider.enabled = false;
 
-            // Get inventory
-            // var inventory = player.GetComponent<Inventory>();
-        
-            // Apply powerups to player
-            OnPowerupPickup?.Invoke(player);
-
+            if (!applyDirectly && Data.isPotion)
+            {
+                var potionScript = player.GetComponent<Potion>();
+                potionScript.PickupPotion(Data);
+            }
+            else
+            {
+                // Apply powerups to player
+                OnPowerupPickup?.Invoke(player);
+            }
+            
             _hasInteracted = true;
         }
     }

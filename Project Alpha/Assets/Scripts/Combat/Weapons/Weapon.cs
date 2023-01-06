@@ -24,7 +24,7 @@ namespace Combat.Weapons
         
         public Controls.Movement movement;
         
-        public PlayerCombat combat;
+        public Combat combat;
 
         public bool CurrentInput
         {
@@ -63,7 +63,7 @@ namespace Combat.Weapons
             movement = movementComponent;
         }
         
-        public void SetCombat(PlayerCombat combatComponent)
+        public void SetCombat(Combat combatComponent)
         {
             combat = combatComponent;
         }

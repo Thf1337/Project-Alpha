@@ -42,18 +42,18 @@ namespace Combat
         {
             if (invulnerable) return;
 
-            float healthBefore = health;
+            var damage = attackDamage.damageAmount;
 
-            if (bypassDamageReduction)
+            if (!bypassDamageReduction)
             {
-                health -= attackDamage.damageAmount;
+                damage *= CalculateDamageReduction();
             }
-            else
-            {
-                health -= attackDamage.damageAmount * CalculateDamageReduction();
-            }
+
+            health -= damage;
+
+            attackDamage.source.AddToTotalDamage(damage);
             
-            print($"{healthBefore - health} damage");
+            print($"{damage} damage");
         }
 
         public virtual void AddMaxHealth(float addMaxHealth, float addMaxHealthMultiplier, bool healHealth) {

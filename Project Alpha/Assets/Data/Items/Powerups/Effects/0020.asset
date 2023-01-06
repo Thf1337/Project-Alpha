@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b533824d36fe5b4c80598896c586925, type: 3}
-  m_Name: 0013
+  m_Name: 0020
   m_EditorClassIdentifier: 
   <PowerupPrefab>k__BackingField: {fileID: 3236507987088196260, guid: 19858af95edeeb5409f97ce8b1888eb2, type: 3}
-  <PowerupSprite>k__BackingField: {fileID: 7293598183456022363, guid: 1ddc9afd21fec77489b1248d18f31b68, type: 3}
+  <PowerupSprite>k__BackingField: {fileID: 21300000, guid: b420416b88f52b940802034fd0fb1295, type: 3}
   isPotion: 0
   <ComponentData>k__BackingField:
-  - rid: 7637624078073593861
+  - rid: 6725854591372754944
   references:
     version: 2
     RefIds:
-    - rid: 7637624078073593861
-      type: {class: AttackBuffData, ns: Powerup.Effects, asm: Assembly-CSharp}
+    - rid: 6725854591372754944
+      type: {class: PotionDropBuffData, ns: Powerup.Effects, asm: Assembly-CSharp}
       data:
         PowerupTime: 0
-        name: AttackBuffData
-        addBaseDamage: 0
-        addDamageMultiplier: 0
-        addAttackSpeed: 10
+        name: PotionDropBuffData
+        Potion: {fileID: 11400000, guid: 4509915ce4d492b4c820a8bb9d43735a, type: 2}
+        RequiredDamage: 40

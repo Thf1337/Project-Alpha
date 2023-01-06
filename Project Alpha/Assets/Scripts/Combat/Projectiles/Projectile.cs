@@ -11,10 +11,11 @@ namespace Combat.Projectiles
     {
         [field: SerializeField] public ProjectileDataSO Data { get; private set; }
 
-        public GameObject SpawningEntity { get; private set; }
+        public GameObject SpawningWeapon { get; private set; }
+        public Combat Combat { get; private set; }
         public int FacingDirection { get; private set; }
         public float BaseDamage { get; private set; }
-        public Vector3 SpawningEntityPos { get; private set; }
+        public Vector3 SpawningWeaponPos { get; private set; }
 
         public event Action OnInit;
 
@@ -33,12 +34,13 @@ namespace Combat.Projectiles
             comps.ForEach(item => item.SetReferences());
         }
     
-        public void Init(GameObject spawningEntity, int facingDirection, float baseDamage)
+        public void Init(GameObject spawningEntity, int facingDirection, Combat combat)
         {
-            SpawningEntity = spawningEntity;
+            SpawningWeapon = spawningEntity;
+            SpawningWeaponPos = spawningEntity.transform.position;
+            Combat = combat;
+            BaseDamage = Combat.CalculateDamage();
             FacingDirection = facingDirection;
-            BaseDamage = baseDamage;
-            SpawningEntityPos = spawningEntity.transform.position;
             SetCanDamage(true);
             SetCanHit(true);
             OnInit?.Invoke();

@@ -16,6 +16,8 @@ namespace Powerup.Effects
             _combat.baseDamage += Data.addBaseDamage;
             _combat.damageMultiplier += Data.addDamageMultiplier;
             _combat.attackSpeed += Data.addAttackSpeed;
+            
+            base.Apply(target);
         }
 
         public override void Revert(GameObject target)

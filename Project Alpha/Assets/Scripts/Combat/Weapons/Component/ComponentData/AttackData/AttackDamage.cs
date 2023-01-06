@@ -7,9 +7,9 @@ namespace Combat.Weapons.Component.ComponentData.AttackData
     public class AttackDamage : AttackData
     {
         [field: SerializeField] public float damageAmount;
-        [field: SerializeField] public GameObject source;
+        [field: SerializeField] public Combat source;
 
-        public void SetData(GameObject setSource, float setDamageAmount)
+        public void SetData(Combat setSource, float setDamageAmount)
         {
             damageAmount = setDamageAmount;
             source = setSource;

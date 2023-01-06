@@ -13,6 +13,7 @@ namespace Combat.Weapons.Component
         private void HandleDetected(Collider2D[] detected)
         {
             CurrentAttackData.damageAmount += Combat.CalculateDamage();
+            CurrentAttackData.source = Combat;
             
             foreach (var item in detected)
             {

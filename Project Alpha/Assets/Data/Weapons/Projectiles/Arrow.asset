@@ -30,7 +30,6 @@ MonoBehaviour:
   - rid: 8548000831775965270
   - rid: 7637624059909111816
   - rid: 7637624059909111817
-  - rid: 7637624078073593866
   references:
     version: 2
     RefIds:
@@ -42,15 +41,6 @@ MonoBehaviour:
       type: {class: DisableDamageOnCollisionData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
       data:
         name: DisableDamageOnCollisionData
-    - rid: 7637624078073593866
-      type: {class: ProjectileSpawnKnockBackData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
-      data:
-        name: ProjectileSpawnKnockBackData
-        KnockBackData:
-          angle: {x: 5, y: 1}
-          strength: 20
-          direction: -1
-          source: {fileID: 0}
     - rid: 8548000831775965184
       type: {class: ProjectileMovementData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
       data:

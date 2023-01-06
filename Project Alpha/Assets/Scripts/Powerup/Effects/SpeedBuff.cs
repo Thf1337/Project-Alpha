@@ -16,6 +16,8 @@ namespace Powerup.Effects
         
             _movement.baseMoveSpeed += Data.addMoveSpeed;
             _movement.moveSpeedMultiplier += Data.addMoveSpeedMultiplier;
+            
+            base.Apply(target);
         }
 
         public override void Revert(GameObject target)

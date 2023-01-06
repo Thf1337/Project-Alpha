@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3236507987088196256}
   - component: {fileID: 3236507987088196263}
   - component: {fileID: 3236507987088196262}
-  - component: {fileID: 8368183066341856710}
+  - component: {fileID: 5167326335192173690}
   m_Layer: 10
   m_Name: PowerupBase
   m_TagString: Interactable
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8368183066341856710
+--- !u!114 &5167326335192173690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,3 +127,4 @@ MonoBehaviour:
   <ItemID>k__BackingField: 0
   <Weight>k__BackingField: 0
   <Data>k__BackingField: {fileID: 0}
+  applyDirectly: 0

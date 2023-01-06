@@ -17,7 +17,7 @@ namespace Combat.Projectiles.Component
             Data = Projectile.Data.GetComponentData<ProjectileDamageData>();
 
             _damageData = new AttackDamage();
-            _damageData.SetData(gameObject, Data.DamageAmount);
+            _damageData.SetData(Projectile.Combat, Data.DamageAmount);
 
             OnEnable();
         }
@@ -25,6 +25,7 @@ namespace Combat.Projectiles.Component
         private void SetDamage()
         {
             _damageData.damageAmount = Data.DamageAmount + Projectile.BaseDamage;
+            _damageData.source = Projectile.Combat;
         }
 
         protected override void OnEnable()

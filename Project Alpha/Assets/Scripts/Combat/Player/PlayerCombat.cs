@@ -7,64 +7,29 @@ using UnityEngine;
 
 namespace Combat.Player
 {
-    public class PlayerCombat : MonoBehaviour
+    public class PlayerCombat : Combat
     {
-        public float attackSpeed = 1.25f;
-        public float baseDamage;
-        public float damageMultiplier;
-        
         private Weapon _weapon;
-        private Movement _movement;
-        private SpriteRenderer _spriteRenderer;
-
-        private bool _isAttacking;
-
-        private void Awake()
-        {
-            _weapon = transform.Find("Weapon").GetComponent<Weapon>();
-            _movement = GetComponent<Movement>();
-            _weapon.OnExit += ExitHandler;
-            
-            _weapon.SetMovement(_movement);
-            _weapon.SetCombat(this);
-        }
-
-        private void Start()
-        {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-        }
-
-        private void EnterPrimary() => _weapon.EnterPrimary(attackSpeed);
-
+        
         private void Update()
         {
-            if (Input.GetButtonDown("WeaponPrimary") && !_isAttacking)
+            if (Input.GetButtonDown("WeaponPrimary") && !IsAttacking)
             {
                 StartCoroutine(EnterWeapon(EnterPrimary));
             }
         }
 
-        private IEnumerator EnterWeapon(Action weaponFunction)
+        protected virtual void EnterPrimary() => _weapon.EnterPrimary(attackSpeed);
+
+        protected override void Awake()
         {
-            yield return new WaitForEndOfFrame();
+            base.Awake();
             
-            _isAttacking = true;
-            _movement.isAbilityDone = false;
-            _spriteRenderer.enabled = false;
-            //_weapon.SetInput(player.InputHandler.AttackInputsHold[(int) inputIndex]);
-            weaponFunction?.Invoke();
-        }
-
-        private void ExitHandler()
-        {
-            _movement.isAbilityDone = true;
-            _spriteRenderer.enabled = true;
-            _isAttacking = false;
-        }
-
-        public float CalculateDamage()
-        {
-            return baseDamage + baseDamage * damageMultiplier;
+            _weapon = transform.Find("Weapon").GetComponent<Weapon>();
+            _weapon.OnExit += ExitHandler;
+            
+            _weapon.SetMovement(Movement);
+            _weapon.SetCombat(this);
         }
     }
 }

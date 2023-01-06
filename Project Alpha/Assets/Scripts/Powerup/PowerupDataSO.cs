@@ -4,19 +4,44 @@ using System.Collections.Generic;
 using System.Linq;
 using General.Interfaces;
 using Powerup.Effects;
+using Unity.VisualScripting.FullSerializer;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Powerup
 {
     [CreateAssetMenu(fileName = "newPowerupData", menuName = "Data/Items/Powerups Data")]
     public class PowerupDataSO : ScriptableObject
     {
+        [field: SerializeField] public GameObject PowerupPrefab { get; private set; }
+        
+        [field: SerializeField] public Sprite PowerupSprite { get; private set; }
+
+        [field: SerializeField] public bool isPotion;
+        
         [field: SerializeReference] public List<PowerupComponentData> ComponentData { get; private set; }
         
         public T GetComponentData<T>() where T : PowerupComponentData
         {
             return ComponentData.OfType<T>().FirstOrDefault();
+        }
+        
+        public void SpawnPowerupAtTarget(Transform targetTransform, GameObject target = null)
+        {
+            var powerup = Instantiate(
+                PowerupPrefab,
+                targetTransform.position,
+                new Quaternion(0, 0, 0, 1));
+            
+            var powerupScript = powerup.GetComponent<Powerup>();
+            powerupScript.CreatePowerup(this);
+
+            if(target)
+            {
+                powerupScript.applyDirectly = true;
+                powerupScript.Interact(target);
+            }
         }
         
         public List<Type> GetAllDependencies()

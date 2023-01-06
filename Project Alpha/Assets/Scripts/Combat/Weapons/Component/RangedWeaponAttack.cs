@@ -50,7 +50,7 @@ namespace Combat.Weapons.Component
 
                     OnProjectileSpawned?.Invoke(projectile);
                     
-                    projectileScript.Init(Weapon.gameObject, Movement.facingDirection, Combat.CalculateDamage());
+                    projectileScript.Init(Weapon.gameObject, Movement.facingDirection, Combat);
                 }
             }
         }

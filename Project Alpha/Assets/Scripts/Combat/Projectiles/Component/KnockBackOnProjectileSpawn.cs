@@ -18,13 +18,13 @@ namespace Combat.Projectiles.Component
 
         private void SetDirection()
         {
-            if (!Projectile.SpawningEntity)
+            if (!Projectile.SpawningWeapon)
             {
                 return;
             }
             
             Data.KnockBackData.direction = -1 * Projectile.FacingDirection;
-            PlayerMovement combat = Projectile.SpawningEntity.GetComponent<PlayerMovement>();
+            PlayerMovement combat = Projectile.SpawningWeapon.GetComponent<PlayerMovement>();
 
             combat.KnockBack(Data.KnockBackData);
         }

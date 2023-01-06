@@ -12,7 +12,7 @@ namespace Combat.Weapons.Component
         protected Weapon Weapon;
         protected AnimationEventHandler EventHandler;
         protected Controls.Movement Movement => Weapon.movement;
-        protected PlayerCombat Combat => Weapon.combat;
+        protected Combat Combat => Weapon.combat;
         protected float AttackStartTime;
 
         protected bool IsAttackActive;

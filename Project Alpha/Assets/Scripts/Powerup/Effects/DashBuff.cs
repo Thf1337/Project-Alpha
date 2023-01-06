@@ -17,6 +17,8 @@ namespace Powerup.Effects
             _movement.dashingVelocityMultiplier += Data.addDashingVelocityMultiplier;
             _movement.baseDashingTime += Data.addBaseDashingTime;
             _movement.dashingTimeMultiplier += Data.addDashingTimeMultiplier;
+            
+            base.Apply(target);
         }
 
         public override void Revert(GameObject target)

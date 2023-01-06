@@ -18,7 +18,7 @@ namespace Combat.Projectiles.Component
 
             if (!Data.DoInitialCheck) return;
 
-            _hits = Physics2D.LinecastAll(transform.position, Projectile.SpawningEntityPos, Data.LayerMask);
+            _hits = Physics2D.LinecastAll(transform.position, Projectile.SpawningWeaponPos, Data.LayerMask);
 
             if (_hits.Length > 0) CheckHits();
         }
