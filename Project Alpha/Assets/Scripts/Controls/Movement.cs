@@ -57,13 +57,13 @@ namespace Controls
         
         protected enum MovementState { Idle, Running, Jumping, Falling }
     
-        protected Rigidbody2D Rigidbody;
-        protected BoxCollider2D BoxCollider;
-        protected Animator Animator;
-        protected SpriteRenderer SpriteRenderer;
+        public Rigidbody2D Rigidbody { get; private set; }
+        public BoxCollider2D BoxCollider { get; private set; }
+        public Animator Animator { get; private set; }
+        public SpriteRenderer SpriteRenderer { get; private set; }
 
         protected int Jumps;
-        protected bool IsJumping;
+        public bool isJumping;
         protected float DirX;
         protected float DirY;
 
@@ -81,10 +81,10 @@ namespace Controls
             SpriteRenderer = GetComponent<SpriteRenderer>();
         }
         
-        protected virtual void Jump(float jumpForce)
+        public virtual void Jump(float jumpForce)
         {
             SetVelocityY(jumpForce);
-            IsJumping = true;
+            isJumping = true;
             Jumps -= 1;
         }
 
@@ -146,6 +146,17 @@ namespace Controls
             if (canFlip && DirX != 0f && DirX != facingDirection)
             {
                 Flip();
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool CheckJump()
+        {
+            if (isJumping && Ground)
+            {
+                isJumping = false;
                 return true;
             }
 

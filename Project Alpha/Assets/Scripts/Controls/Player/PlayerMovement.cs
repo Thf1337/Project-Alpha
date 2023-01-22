@@ -33,7 +33,7 @@ namespace Controls
             DirX = Input.GetAxisRaw("Horizontal");
             DirY = Input.GetAxisRaw("Vertical");
 
-            if (!IsJumping && Ground)
+            if (!isJumping && Ground)
             {
                 cameraController.UnflipYOffset();
                 Jumps = jumpAmount;
@@ -61,7 +61,7 @@ namespace Controls
                 Jump(JumpForce);
             }
 
-            if (Input.GetButton("Jump") && IsJumping)
+            if (Input.GetButton("Jump") && isJumping)
             {
                 if (_jumpTimeCounter > 0f)
                 {
@@ -70,13 +70,13 @@ namespace Controls
                 }
                 else
                 {
-                    IsJumping = false;
+                    isJumping = false;
                 }
             }
 
             if (Input.GetButtonUp("Jump"))
             {
-                IsJumping = false;
+                isJumping = false;
             }
         
             if (Input.GetButtonDown("Dash") && CanDash)

@@ -149,9 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemRef: {fileID: 0}
   lootTable: {fileID: 0}
-  closedSprite: {fileID: 787350816, guid: b08278cb804823a498097d2152ebc267, type: 3}
-  openSprite: {fileID: -1300565661, guid: b08278cb804823a498097d2152ebc267, type: 3}
-  emptySprite: {fileID: -927211417, guid: b08278cb804823a498097d2152ebc267, type: 3}
+  closedSprite: {fileID: 1840346931, guid: 1ce65837ed30f44428869dcd7c082203, type: 3}
+  openSprite: {fileID: 1466105776, guid: 1ce65837ed30f44428869dcd7c082203, type: 3}
+  emptySprite: {fileID: 985466306, guid: 1ce65837ed30f44428869dcd7c082203, type: 3}
 --- !u!1 &2519322689742574988
 GameObject:
   m_ObjectHideFlags: 0

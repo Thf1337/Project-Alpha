@@ -22,7 +22,7 @@ TagManager:
   - Destructible
   - Items
   - Minimap
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -43,8 +43,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Far Background
+    uniqueID: 3102740201
+    locked: 0
   - name: Background
     uniqueID: 3264687261
+    locked: 0
+  - name: Near Background
+    uniqueID: 964350469
     locked: 0
   - name: Default
     uniqueID: 0

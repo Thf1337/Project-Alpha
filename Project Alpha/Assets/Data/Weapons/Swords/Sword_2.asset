@@ -96,20 +96,20 @@ MonoBehaviour:
       data:
         <AttackData>k__BackingField:
         - KnockBackData:
-            Angle: {x: 0, y: 0}
-            Strength: 0
-            Direction: 0
-            Source: {fileID: 0}
+            angle: {x: 1, y: 0}
+            strength: 10
+            direction: 0
+            source: {fileID: 0}
         - KnockBackData:
-            Angle: {x: 0, y: 0}
-            Strength: 0
-            Direction: 0
-            Source: {fileID: 0}
+            angle: {x: 2, y: 0}
+            strength: 15
+            direction: 0
+            source: {fileID: 0}
         - KnockBackData:
-            Angle: {x: 0, y: 0}
-            Strength: 0
-            Direction: 0
-            Source: {fileID: 0}
+            angle: {x: 1, y: 5}
+            strength: 20
+            direction: 0
+            source: {fileID: 0}
     - rid: 8548000699513569280
       type: {class: MovementData, ns: Combat.Weapons.Component.ComponentData, asm: Assembly-CSharp}
       data:
