@@ -69,7 +69,7 @@ namespace Controls
 
         protected static readonly int CurrentState = Animator.StringToHash("currentState");
 
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             canMove = true;
             isAbilityDone = true;
@@ -143,7 +143,7 @@ namespace Controls
 
         public bool CheckFlip()
         {
-            if (canFlip && DirX != 0f && DirX != facingDirection)
+            if (canFlip && DirX != 0f && (int) DirX != facingDirection)
             {
                 Flip();
                 return true;
@@ -154,9 +154,11 @@ namespace Controls
 
         public bool CheckJump()
         {
+            print(Ground);
             if (isJumping && Ground)
             {
                 isJumping = false;
+                ResetJumps();
                 return true;
             }
 

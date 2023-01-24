@@ -12,18 +12,19 @@ namespace General.Finite_State_Machine
         public Movement Movement { get; private set; }
         public Rigidbody2D Rigidbody { get; private set; }
         public Animator Animator { get; private set; }
+        public GameObject Player { get; private set; }
 
         private void Awake()
         {
             Movement = GetComponent<Movement>();
-            Rigidbody = Movement.Rigidbody;
-            Animator = Movement.Animator;
-            
+            Player = GameObject.FindWithTag("Player");
             CurrentState = initialState;
         }
 
         private void Start()
         {
+            Rigidbody = Movement.Rigidbody;
+            Animator = Movement.Animator;
             CurrentState.Enter(this);
         }
 

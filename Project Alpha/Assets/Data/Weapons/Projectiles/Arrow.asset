@@ -76,7 +76,7 @@ MonoBehaviour:
         CompensateForVelocity: 1
         LayerMask:
           serializedVersion: 2
-          m_Bits: 320
+          m_Bits: 4416
         DoInitialCheck: 1
     - rid: 8548000831775965189
       type: {class: StickInLayerData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
@@ -84,7 +84,7 @@ MonoBehaviour:
         name: StickInLayerData
         LayerMask:
           serializedVersion: 2
-          m_Bits: 320
+          m_Bits: 4416
     - rid: 8548000831775965190
       type: {class: HitLineData, ns: Combat.Projectiles.Component, asm: Assembly-CSharp}
       data:
@@ -116,9 +116,9 @@ MonoBehaviour:
         name: ProjectileKnockBackData
         LayerMask:
           serializedVersion: 2
-          m_Bits: 256
+          m_Bits: 4352
         KnockBackData:
           angle: {x: 1, y: 1}
-          strength: 5
+          strength: 15
           direction: 1
           source: {fileID: 0}

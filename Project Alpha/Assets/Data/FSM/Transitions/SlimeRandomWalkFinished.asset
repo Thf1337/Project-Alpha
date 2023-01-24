@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4b2c0a83262438d83813f70c7a47b2c, type: 3}
-  m_Name: SlimeResumePatrolAfterWait
+  m_Name: SlimeRandomWalkFinished
   m_EditorClassIdentifier: 
-  decision: {fileID: 11400000, guid: 95dae57d9d831bd45927cdc95c244d15, type: 2}
-  trueState: {fileID: 11400000, guid: 7094f9f364e819f409c8603281885812, type: 2}
+  decision: {fileID: 11400000, guid: 88b3aa9901d3dff49ac49a62658476a6, type: 2}
+  trueState: {fileID: 11400000, guid: 2a566c4604efa7047ab1dae883c1f9f0, type: 2}
   falseState: {fileID: 11400000, guid: 0f494f06b8a0e3a43a97b13130a8cb97, type: 2}

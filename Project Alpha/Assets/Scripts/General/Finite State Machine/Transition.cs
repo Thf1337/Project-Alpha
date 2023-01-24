@@ -14,7 +14,7 @@ namespace General.Finite_State_Machine
             decision.Enter(stateMachine);
         }
  
-        public void Execute(BaseStateMachine stateMachine)
+        public bool Execute(BaseStateMachine stateMachine)
         {
             if(decision.Decide(stateMachine) && !(trueState is RemainInState))
             {
@@ -28,6 +28,12 @@ namespace General.Finite_State_Machine
                 stateMachine.CurrentState = falseState;
                 stateMachine.CurrentState.Enter(stateMachine);
             }
+            else
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

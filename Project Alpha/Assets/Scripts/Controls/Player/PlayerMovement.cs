@@ -15,9 +15,9 @@ namespace Controls
 
         private bool _canDrop;
 
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             
             _afterImage = GetComponent<AfterImage>();
         }

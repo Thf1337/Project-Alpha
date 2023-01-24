@@ -1,4 +1,5 @@
 ﻿using General.Finite_State_Machine;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace Controls.Enemy.FSM.Activity
@@ -11,6 +12,12 @@ namespace Controls.Enemy.FSM.Activity
         public override void Enter(BaseStateMachine stateMachine)
         {
             _direction = Random.Range(0, 2) * 2 - 1;
+
+            var movement = stateMachine.Movement;
+            if(movement.facingDirection != _direction)
+            {
+                movement.Flip();
+            }
         }
  
         public override void Execute(BaseStateMachine stateMachine)

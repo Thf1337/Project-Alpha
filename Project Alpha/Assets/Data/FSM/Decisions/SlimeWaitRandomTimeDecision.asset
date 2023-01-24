@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9f3cd8f6f35465b989cf1ed3dff1bd9, type: 3}
-  m_Name: SlimeJumpActivity
+  m_Script: {fileID: 11500000, guid: db1f0dfc76024ba6ae9995507daefd93, type: 3}
+  m_Name: SlimeWaitRandomTimeDecision
   m_EditorClassIdentifier: 
-  targetTag: Player
-  speedMultiplier: 2
+  waitTimeLower: 1
+  waitTimeUpper: 2

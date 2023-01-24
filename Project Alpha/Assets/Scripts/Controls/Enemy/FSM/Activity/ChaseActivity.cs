@@ -12,7 +12,14 @@ namespace Controls.Enemy.FSM.Activity
  
         public override void Enter(BaseStateMachine stateMachine)
         {
-            _target = GameObject.FindWithTag(targetTag);
+            if (targetTag == "Player")
+            {
+                _target = stateMachine.Player;
+            }
+            else
+            {
+                _target = GameObject.FindWithTag(targetTag);
+            }
         }
  
         public override void Execute(BaseStateMachine stateMachine)
@@ -23,12 +30,8 @@ namespace Controls.Enemy.FSM.Activity
             {
                 var dir = _target.transform.position.x > stateMachine.transform.position.x ? 1 : -1;
 
-                movement.CheckJump();
-                if(!movement.isJumping)
-                {
-                    movement.SetVelocityX(speed * dir);
-                    movement.Animator.SetInteger("currentState", (int)States.Running);
-                }
+                movement.SetVelocityX(speed * dir);
+                movement.Animator.SetInteger("currentState", (int)States.Running);
 
                 if (movement.canFlip)
                 {

@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Controls.Enemy.FSM.Activity
 {
-    [CreateAssetMenu(menuName = "AI/FSM/Activity/WaitActivity")]
-    public class WaitActivity : General.Finite_State_Machine.Activity
+    [CreateAssetMenu(menuName = "AI/FSM/Activity/IdleActivity")]
+    public class IdleActivity : General.Finite_State_Machine.Activity
     {
         public override void Enter(BaseStateMachine stateMachine)
         {

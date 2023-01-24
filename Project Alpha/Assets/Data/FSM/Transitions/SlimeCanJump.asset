@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b2c0a83262438d83813f70c7a47b2c, type: 3}
   m_Name: SlimeCanJump
   m_EditorClassIdentifier: 
-  decision: {fileID: 11400000, guid: 25e50d5c8ca4e774ca91ad5a44c2d4e1, type: 2}
-  trueState: {fileID: 11400000, guid: 41df11d3d4d70c24aa74caa03354ac66, type: 2}
+  decision: {fileID: 11400000, guid: 96fac2b71b9a4d2428c1fe6761cf5521, type: 2}
+  trueState: {fileID: 11400000, guid: 826ea76569312804189061e3bcadfdfd, type: 2}
   falseState: {fileID: 11400000, guid: 0f494f06b8a0e3a43a97b13130a8cb97, type: 2}

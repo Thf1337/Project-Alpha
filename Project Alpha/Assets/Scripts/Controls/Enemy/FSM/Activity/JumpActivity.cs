@@ -1,4 +1,5 @@
 ﻿using General.Finite_State_Machine;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace Controls.Enemy.FSM.Activity
@@ -8,11 +9,23 @@ namespace Controls.Enemy.FSM.Activity
     {
         private GameObject _target;
         public string targetTag;
-        public float speed = 1;
+        public float speedMultiplier = 0.3f;
+
+        private float _direction;
  
         public override void Enter(BaseStateMachine stateMachine)
         {
-            _target = GameObject.FindWithTag(targetTag);
+            if (targetTag == "Player")
+            {
+                _target = stateMachine.Player;
+            }
+            else
+            {
+                _target = GameObject.FindWithTag(targetTag);
+            }
+            
+            stateMachine.Movement.Animator.SetInteger("currentState", (int) States.Jumping);
+            _direction = _target.transform.position.x > stateMachine.transform.position.x ? 1 : -1;
         }
  
         public override void Execute(BaseStateMachine stateMachine)
@@ -21,12 +34,16 @@ namespace Controls.Enemy.FSM.Activity
             
             if (movement.canMove)
             {
-                movement.Animator.SetInteger("currentState", (int) States.Jumping);
-                var dir = _target.transform.position.x > stateMachine.transform.position.x ? 1 : -1;
-
-                movement.SetVelocityX(dir * speed * 1/3);
-
-                if(!movement.isJumping) movement.Jump(speed);
+                movement.SetVelocityX(_direction * movement.MoveSpeed * speedMultiplier);
+                
+                if(!movement.isJumping)
+                {
+                    movement.Jump(movement.JumpForce);
+                }
+                else
+                {
+                    movement.CheckJump();
+                }
             }
         }
  

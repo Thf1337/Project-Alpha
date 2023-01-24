@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace General.Finite_State_Machine
@@ -24,7 +25,11 @@ namespace General.Finite_State_Machine
                 activity.Execute(machine);
             
             foreach (var transition in Transitions)
-                transition.Execute(machine);
+            {
+                var changedState = transition.Execute(machine);
+
+                if (changedState) return;
+            }
         }
         
         public override void Exit(BaseStateMachine machine)

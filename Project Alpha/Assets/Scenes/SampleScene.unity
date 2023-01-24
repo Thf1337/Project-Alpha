@@ -3500,7 +3500,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2039
+    m_Bits: 6135
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -90131,11 +90131,10 @@ GameObject:
   - component: {fileID: 1363989358}
   - component: {fileID: 1363989351}
   - component: {fileID: 1363989355}
-  - component: {fileID: 1363989354}
   - component: {fileID: 1363989357}
   - component: {fileID: 1363989356}
   - component: {fileID: 1363989360}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -90222,7 +90221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363989350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.79, y: 0.957, z: 0}
+  m_LocalPosition: {x: 3.88, y: 0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -90230,21 +90229,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1363989354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363989350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c565aa8887e48e48d9b47800df90aeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points:
-  - {x: -8, y: -0.5, z: 0}
-  - {x: 9.5, y: -0.5, z: 0}
 --- !u!114 &1363989355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90257,7 +90241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c90c06439c4e51aee2654e0eaff947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialState: {fileID: 11400000, guid: 7094f9f364e819f409c8603281885812, type: 2}
+  initialState: {fileID: 11400000, guid: 2a566c4604efa7047ab1dae883c1f9f0, type: 2}
 --- !u!114 &1363989356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90351,17 +90335,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be044757df5146899f72ce065ea67642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMoveSpeed: 0
+  baseMoveSpeed: 30
   moveSpeedMultiplier: 0
   facingDirection: 1
   isAbilityDone: 0
   canMove: 0
   canFlip: 0
-  baseJumpForce: 0
+  baseJumpForce: 15
   jumpForceMultiplier: 0
   baseJumpTime: 0
   jumpTimeMultiplier: 0
-  jumpAmount: 0
+  jumpAmount: 1
   baseDashingVelocity: {x: 0, y: 0}
   dashingVelocityMultiplier: 0
   baseDashingTime: 0
@@ -90371,7 +90355,7 @@ MonoBehaviour:
   groundCheckRadius: 0.2
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 448
+    m_Bits: 320
   isJumping: 0
 --- !u!4 &1376317237 stripped
 Transform:
@@ -109018,7 +109002,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1964923725}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109033,7 +109017,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964923724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3, z: 0}
+  m_LocalPosition: {x: 0.08, y: -1.104, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -109906,11 +109890,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7470986009908008090, guid: 8289229fd587ca1469a40cdf6a7498a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.0499997
+      value: -12.18
       objectReference: {fileID: 0}
     - target: {fileID: 7470986009908008090, guid: 8289229fd587ca1469a40cdf6a7498a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.07000017
+      value: 1.13
       objectReference: {fileID: 0}
     - target: {fileID: 7470986009908008090, guid: 8289229fd587ca1469a40cdf6a7498a8, type: 3}
       propertyPath: m_LocalPosition.z

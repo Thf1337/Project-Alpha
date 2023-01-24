@@ -56,7 +56,7 @@ MonoBehaviour:
         <AttackData>k__BackingField:
         - <DamageableLayers>k__BackingField:
             serializedVersion: 2
-            m_Bits: 256
+            m_Bits: 4352
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: 1
@@ -97,17 +97,17 @@ MonoBehaviour:
         <AttackData>k__BackingField:
         - KnockBackData:
             angle: {x: 1, y: 0}
-            strength: 10
+            strength: 20
             direction: 0
             source: {fileID: 0}
         - KnockBackData:
             angle: {x: 2, y: 0}
-            strength: 15
+            strength: 25
             direction: 0
             source: {fileID: 0}
         - KnockBackData:
             angle: {x: 1, y: 5}
-            strength: 20
+            strength: 30
             direction: 0
             source: {fileID: 0}
     - rid: 8548000699513569280
