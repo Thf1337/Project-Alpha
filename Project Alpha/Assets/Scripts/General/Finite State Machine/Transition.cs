@@ -14,19 +14,19 @@ namespace General.Finite_State_Machine
             decision.Enter(stateMachine);
         }
  
-        public bool Execute(BaseStateMachine stateMachine)
+        public bool Execute(BaseStateMachine stateMachine, int index)
         {
             if(decision.Decide(stateMachine) && !(trueState is RemainInState))
             {
-                stateMachine.CurrentState.Exit(stateMachine);
-                stateMachine.CurrentState = trueState;
-                stateMachine.CurrentState.Enter(stateMachine);
+                stateMachine.currentStates[index].Exit(stateMachine);
+                stateMachine.currentStates[index] = trueState;
+                stateMachine.currentStates[index].Enter(stateMachine);
             }
             else if (!(falseState is RemainInState))
             {
-                stateMachine.CurrentState.Exit(stateMachine);
-                stateMachine.CurrentState = falseState;
-                stateMachine.CurrentState.Enter(stateMachine);
+                stateMachine.currentStates[index].Exit(stateMachine);
+                stateMachine.currentStates[index] = falseState;
+                stateMachine.currentStates[index].Enter(stateMachine);
             }
             else
             {

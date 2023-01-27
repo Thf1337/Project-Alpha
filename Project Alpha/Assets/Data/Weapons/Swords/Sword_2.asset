@@ -65,7 +65,7 @@ MonoBehaviour:
             height: 2.5
         - <DamageableLayers>k__BackingField:
             serializedVersion: 2
-            m_Bits: 256
+            m_Bits: 4352
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: 1
@@ -74,7 +74,7 @@ MonoBehaviour:
             height: 2.5
         - <DamageableLayers>k__BackingField:
             serializedVersion: 2
-            m_Bits: 256
+            m_Bits: 4352
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: 1

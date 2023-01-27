@@ -5731,11 +5731,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3236507987088196256, guid: 19858af95edeeb5409f97ce8b1888eb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.134
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: 3236507987088196256, guid: 19858af95edeeb5409f97ce8b1888eb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.737
+      value: -4.61
       objectReference: {fileID: 0}
     - target: {fileID: 3236507987088196256, guid: 19858af95edeeb5409f97ce8b1888eb2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -90201,7 +90201,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: -1703460748, guid: 8bdccebb8fa08fe4798e768681987a95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -90221,7 +90221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363989350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.88, y: 0.17, z: 0}
+  m_LocalPosition: {x: 4.26, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -90241,7 +90241,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c90c06439c4e51aee2654e0eaff947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialState: {fileID: 11400000, guid: 2a566c4604efa7047ab1dae883c1f9f0, type: 2}
+  initialStates:
+  - {fileID: 11400000, guid: 2a566c4604efa7047ab1dae883c1f9f0, type: 2}
+  - {fileID: 11400000, guid: d254bbd574146384a9745ffbb246635c, type: 2}
+  - {fileID: 11400000, guid: d2ee9fee8ce1f4f48824a1d239aaef2a, type: 2}
+  currentStates: []
+  isDead: 0
+  dirX: 0
+  dirY: 0
 --- !u!114 &1363989356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90257,7 +90264,6 @@ MonoBehaviour:
   attackSpeed: 1.25
   baseDamage: 0
   damageMultiplier: 0
-  isKnockBackAble: 1
   totalDamageDealt: 0
 --- !u!114 &1363989357
 MonoBehaviour:
@@ -90272,9 +90278,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  baseMaxHealth: 100
+  baseMaxHealth: 1
   maxHealthMultiplier: 0
   defense: 0
+  isDead: 0
   invulnerable: 0
 --- !u!61 &1363989358
 BoxCollider2D:
@@ -90341,7 +90348,8 @@ MonoBehaviour:
   isAbilityDone: 0
   canMove: 0
   canFlip: 0
-  baseJumpForce: 15
+  isKnockBackAble: 1
+  baseJumpForce: 30
   jumpForceMultiplier: 0
   baseJumpTime: 0
   jumpTimeMultiplier: 0
@@ -109349,6 +109357,7 @@ MonoBehaviour:
   isAbilityDone: 0
   canMove: 0
   canFlip: 0
+  isKnockBackAble: 1
   baseJumpForce: 15
   jumpForceMultiplier: 0
   baseJumpTime: 0.3
@@ -109402,6 +109411,7 @@ MonoBehaviour:
   baseMaxHealth: 100
   maxHealthMultiplier: 0
   defense: 0
+  isDead: 0
   invulnerable: 0
   healthBar: {fileID: 902182731}
 --- !u!114 &2020652442
@@ -109419,7 +109429,6 @@ MonoBehaviour:
   attackSpeed: 1.25
   baseDamage: 0
   damageMultiplier: 0
-  isKnockBackAble: 0
   totalDamageDealt: 0
 --- !u!114 &2020652443
 MonoBehaviour:

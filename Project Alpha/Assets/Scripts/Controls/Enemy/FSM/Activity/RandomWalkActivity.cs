@@ -13,23 +13,19 @@ namespace Controls.Enemy.FSM.Activity
         {
             _direction = Random.Range(0, 2) * 2 - 1;
 
-            var movement = stateMachine.Movement;
-            if(movement.facingDirection != _direction)
-            {
-                movement.Flip();
-            }
+            // var movement = stateMachine.Movement;
+            // if(movement.facingDirection != _direction)
+            // {
+            //     movement.Flip();
+            // }
         }
  
         public override void Execute(BaseStateMachine stateMachine)
         {
             var movement = stateMachine.Movement;
             
-            if (movement.canMove)
-            {
-                movement.Animator.SetInteger("currentState", (int) States.Running);
-
-                movement.SetVelocityX(_direction * movement.MoveSpeed);
-            }
+            stateMachine.dirX = _direction;
+            movement.SetVelocityX(_direction * movement.MoveSpeed);
         }
  
         public override void Exit(BaseStateMachine stateMachine)

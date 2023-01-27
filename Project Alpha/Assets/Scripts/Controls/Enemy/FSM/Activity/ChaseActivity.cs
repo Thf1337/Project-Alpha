@@ -8,9 +8,9 @@ namespace Controls.Enemy.FSM.Activity
     {
         private GameObject _target;
         public string targetTag;
-        public float speed = 1;
- 
-        public override void Enter(BaseStateMachine stateMachine)
+        public float speedMultiplier = 1;
+
+        private void GetTarget(BaseStateMachine stateMachine)
         {
             if (targetTag == "Player")
             {
@@ -22,26 +22,29 @@ namespace Controls.Enemy.FSM.Activity
             }
         }
  
+        public override void Enter(BaseStateMachine stateMachine)
+        {
+            GetTarget(stateMachine);
+        }
+ 
         public override void Execute(BaseStateMachine stateMachine)
         {
             var movement = stateMachine.Movement;
             
-            if (movement.canMove)
-            {
-                var dir = _target.transform.position.x > stateMachine.transform.position.x ? 1 : -1;
+            var dir = _target.transform.position.x > stateMachine.transform.position.x ? 1 : -1;
 
-                movement.SetVelocityX(speed * dir);
-                movement.Animator.SetInteger("currentState", (int)States.Running);
+            movement.SetVelocityX(movement.MoveSpeed * speedMultiplier * dir);
+            stateMachine.dirX = dir;
 
-                if (movement.canFlip)
-                {
-                    if(movement.canFlip && dir != movement.facingDirection) movement.Flip();
-                }
+            // if (movement.canFlip)
+            // {
+            //     if(movement.canFlip && dir != movement.facingDirection) movement.Flip();
+            // }
             }
-        }
  
         public override void Exit(BaseStateMachine stateMachine)
         {
+            
         }
     }
 }

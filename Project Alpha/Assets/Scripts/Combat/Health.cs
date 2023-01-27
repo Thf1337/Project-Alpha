@@ -13,12 +13,18 @@ namespace Combat
         
         public float defense;
 
+        public bool isDead;
+
         public bool invulnerable;
     
         protected float MaxHealth;
         
+        private Animation _animation;
+        
         protected virtual void Awake()
         {
+            _animation = GetComponent<Animation>();
+            
             MaxHealth = CalculateMaxHealth();
             health = MaxHealth;
         }
@@ -54,6 +60,11 @@ namespace Combat
             attackDamage.source.AddToTotalDamage(damage);
             
             print($"{damage} damage");
+
+            if (health <= 0f)
+            {
+                isDead = true;
+            }
         }
 
         public virtual void AddMaxHealth(float addMaxHealth, float addMaxHealthMultiplier, bool healHealth) {
@@ -76,6 +87,11 @@ namespace Combat
             if (health > MaxHealth)
             {
                 health = MaxHealth;
+
+                if (health <= 0f)
+                {
+                    isDead = true;
+                }
             }
         }
     

@@ -7,12 +7,11 @@ using UnityEngine;
 
 namespace Combat
 {
-    public class Combat : MonoBehaviour, IKnockBackable
+    public class Combat : MonoBehaviour
     {
         public float attackSpeed = 1.25f;
         public float baseDamage;
         public float damageMultiplier;
-        [SerializeField] protected bool isKnockBackAble;
 
         public float totalDamageDealt;
 
@@ -34,8 +33,6 @@ namespace Combat
         {
             Movement = GetComponent<Movement>();
             Rigidbody = GetComponent<Rigidbody2D>();
-            
-            isKnockBackAble = true;
         }
 
         protected virtual void Start()
@@ -64,14 +61,6 @@ namespace Combat
         public virtual float CalculateDamage()
         {
             return baseDamage + baseDamage * damageMultiplier;
-        }
-        
-        public void KnockBack(KnockBackData data)
-        {
-            if (!isKnockBackAble) return;
-            
-            data.angle.Normalize();
-            Rigidbody.velocity = new Vector2(data.strength * data.angle.x * data.direction, data.strength * data.angle.y);
         }
     }
 }

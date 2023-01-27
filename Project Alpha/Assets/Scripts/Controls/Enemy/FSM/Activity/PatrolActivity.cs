@@ -28,7 +28,7 @@ namespace Controls.Enemy.FSM.Activity
                 if(!movement.isJumping)
                 {
                     movement.SetVelocityX(speed * x);
-                    movement.Animator.SetInteger("currentState", (int)States.Running);
+                    stateMachine.dirX = x;
                 }
 
                 if (movement.canFlip)

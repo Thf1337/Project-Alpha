@@ -8,16 +8,24 @@ namespace Controls.Enemy.FSM.Decisions
     {
         private Transform _playerTransform;
         private Transform _slimeTransform;
-        
+
+        private static bool IsJumpUp(BaseStateMachine stateMachine)
+        {
+            return !stateMachine.Timers.ContainsKey("Jump");
+        }
+
         public override void Enter(BaseStateMachine stateMachine)
         {
             _playerTransform = stateMachine.Player.transform;
             _slimeTransform = stateMachine.transform;
+            
+            
         }
 
         public override bool Decide(BaseStateMachine stateMachine)
         {
-            return !stateMachine.Movement.isJumping && _playerTransform.position.y > _slimeTransform.position.y;
+            return IsJumpUp(stateMachine) && !stateMachine.Movement.isJumping 
+                                          && _playerTransform.position.y - 0.5f >= _slimeTransform.position.y;
         }
     }
 }

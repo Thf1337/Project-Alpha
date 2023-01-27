@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 0001
   m_EditorClassIdentifier: 
   <PowerupPrefab>k__BackingField: {fileID: 3236507987088196260, guid: 19858af95edeeb5409f97ce8b1888eb2, type: 3}
-  <PowerupSprite>k__BackingField: {fileID: 21300000, guid: d378054c9cfd6a046a76744457074295, type: 3}
+  <PowerupSprite>k__BackingField: {fileID: -1736113957, guid: 80682f5289d7ec1438d9530226b8fa32, type: 3}
   isPotion: 1
   <ComponentData>k__BackingField:
   - rid: 7637624078073593857

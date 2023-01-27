@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a3ac7091204bbfbd8f1581e5eb8b98, type: 3}
   m_Name: SlimeJumpState
   m_EditorClassIdentifier: 
-  Activities:
+  activities:
   - {fileID: 11400000, guid: 957924b9d8b738440a756ede4c979cf4, type: 2}
-  Transitions:
-  - {fileID: 11400000, guid: 65a76bbc44dc2574a8138d0cdf2c7dbe, type: 2}
+  transitions:
+  - {fileID: 11400000, guid: e76195fd6300af047a6593c0265213b9, type: 2}

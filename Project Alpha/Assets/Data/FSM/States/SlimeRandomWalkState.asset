@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a3ac7091204bbfbd8f1581e5eb8b98, type: 3}
   m_Name: SlimeRandomWalkState
   m_EditorClassIdentifier: 
-  Activities:
+  activities:
   - {fileID: 11400000, guid: 6b643112c171b51418f90b72e3ba67a5, type: 2}
-  Transitions:
-  - {fileID: 11400000, guid: 86dac2ac910e1074991bba8f3e25aca3, type: 2}
+  transitions:
   - {fileID: 11400000, guid: 49e32535a5c66044b9117172a8e94d1e, type: 2}
+  - {fileID: 11400000, guid: 86dac2ac910e1074991bba8f3e25aca3, type: 2}

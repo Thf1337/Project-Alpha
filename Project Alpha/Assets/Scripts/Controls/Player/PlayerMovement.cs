@@ -28,8 +28,10 @@ namespace Controls
             Rigidbody.velocity = new Vector2(data.strength * data.angle.x * data.direction, data.strength * data.angle.y);
         }
 
-        private void Update()
+        protected override void Update()
         {
+            base.Update();
+            
             DirX = Input.GetAxisRaw("Horizontal");
             DirY = Input.GetAxisRaw("Vertical");
 

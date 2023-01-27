@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using Combat;
+using General.Interfaces;
+using General.Utilities;
 using UnityEngine;
 
 namespace Controls
 {
-    public class Movement : MonoBehaviour
+    public class Movement : MonoBehaviour, IKnockBackable
     {
         [Header("Movement variables")]
         public float baseMoveSpeed;
@@ -12,6 +16,7 @@ namespace Controls
         public bool isAbilityDone;
         public bool canMove;
         public bool canFlip;
+        [SerializeField] protected bool isKnockBackAble;
         
         [Header("Jumping")]
         public float baseJumpForce;
@@ -58,6 +63,7 @@ namespace Controls
         protected enum MovementState { Idle, Running, Jumping, Falling }
     
         public Rigidbody2D Rigidbody { get; private set; }
+        public Health Health { get; private set; }
         public BoxCollider2D BoxCollider { get; private set; }
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
@@ -67,6 +73,8 @@ namespace Controls
         protected float DirX;
         protected float DirY;
 
+        private Timer _knockBackTimer;
+
         protected static readonly int CurrentState = Animator.StringToHash("currentState");
 
         protected virtual void Awake()
@@ -74,13 +82,35 @@ namespace Controls
             canMove = true;
             isAbilityDone = true;
             Jumps = jumpAmount;
+            _knockBackTimer = new Timer(0.5f);
         
             Rigidbody = GetComponent<Rigidbody2D>();
+            Health = GetComponent<Health>();
             BoxCollider = GetComponent<BoxCollider2D>();
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
         }
-        
+
+        private void KnockBackDone()
+        {
+            canMove = true;
+            _knockBackTimer.StopTimer();
+        }
+
+        protected virtual void OnEnable()
+        {
+            _knockBackTimer.OnTimerDone += KnockBackDone;
+        }
+
+        protected virtual void OnDisable()
+        {
+            _knockBackTimer.OnTimerDone -= KnockBackDone;
+        }
+
+        protected virtual void Update()
+        {
+            _knockBackTimer.Tick();
+        }
         public virtual void Jump(float jumpForce)
         {
             SetVelocityY(jumpForce);
@@ -117,18 +147,20 @@ namespace Controls
 
         public void SetVelocity(float velocity, Vector2 angle, int direction)
         {
+            if (Health.isDead) return;
+            
             angle.Normalize();
             Rigidbody.velocity = new Vector2(angle.x * velocity * direction, angle.y * velocity);
         }
 
         public void SetVelocityX(float velocity)
         {
-            Rigidbody.velocity = new Vector2(velocity, Rigidbody.velocity.y);
+            if(canMove && !Health.isDead) Rigidbody.velocity = new Vector2(velocity, Rigidbody.velocity.y);
         }
 
         public void SetVelocityY(float velocity)
         {
-            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, velocity);
+            if(canMove && !Health.isDead) Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, velocity);
         }
 
         public void EnableFlip()
@@ -154,7 +186,6 @@ namespace Controls
 
         public bool CheckJump()
         {
-            print(Ground);
             if (isJumping && Ground)
             {
                 isJumping = false;
@@ -169,6 +200,18 @@ namespace Controls
         {
             facingDirection *= -1;
             Rigidbody.transform.Rotate(0.0f, 180.0f, 0.0f);
+        }
+        
+        public void KnockBack(KnockBackData data)
+        {
+            if (!isKnockBackAble || Health.isDead) return;
+
+            canMove = false;
+            
+            data.angle.Normalize();
+            Rigidbody.velocity = new Vector2(data.strength * data.angle.x * data.direction, data.strength * data.angle.y);
+            
+            _knockBackTimer.StartTimer();
         }
     }
 }

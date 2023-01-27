@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace General.Utilities
@@ -11,7 +12,7 @@ namespace General.Utilities
         private float _duration;
         private float _targetTime;
 
-        private bool _isActive;
+        public bool _isActive;
 
         public Timer(float duration)
         {
@@ -33,7 +34,7 @@ namespace General.Utilities
         public void Tick()
         {
             if (!_isActive) return;
-            
+
             if (Time.time >= _targetTime)
             {
                 OnTimerDone?.Invoke();

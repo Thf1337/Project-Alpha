@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SlimeChaseActivity
   m_EditorClassIdentifier: 
   targetTag: Player
-  speed: 6
+  speedMultiplier: 1.5

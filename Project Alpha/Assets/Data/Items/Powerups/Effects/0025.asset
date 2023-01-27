@@ -28,4 +28,4 @@ MonoBehaviour:
         addBaseDashingVelocity: {x: 0, y: 0}
         addDashingVelocityMultiplier: 0
         addBaseDashingTime: 0
-        addDashingTimeMultiplier: 0.5
+        addDashingTimeMultiplier: 0.25

@@ -9,7 +9,7 @@ namespace Controls.Enemy.FSM.Activity
         public override void Enter(BaseStateMachine stateMachine)
         {
             stateMachine.Rigidbody.velocity = Vector2.zero;
-            stateMachine.Animator.SetInteger("currentState", (int) States.Idle);
+            stateMachine.dirX = 0f;
         }
         
         public override void Execute(BaseStateMachine stateMachine) { }
