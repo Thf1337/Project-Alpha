@@ -74,6 +74,7 @@ namespace Controls
         protected float DirY;
 
         private Timer _knockBackTimer;
+        public float invincibilityDuration = 0.5f;
 
         protected static readonly int CurrentState = Animator.StringToHash("currentState");
 
@@ -82,7 +83,7 @@ namespace Controls
             canMove = true;
             isAbilityDone = true;
             Jumps = jumpAmount;
-            _knockBackTimer = new Timer(0.5f);
+            _knockBackTimer = new Timer(invincibilityDuration);
         
             Rigidbody = GetComponent<Rigidbody2D>();
             Health = GetComponent<Health>();
@@ -202,7 +203,7 @@ namespace Controls
             Rigidbody.transform.Rotate(0.0f, 180.0f, 0.0f);
         }
         
-        public void KnockBack(KnockBackData data)
+        public virtual void KnockBack(KnockBackData data)
         {
             if (!isKnockBackAble || Health.isDead) return;
 

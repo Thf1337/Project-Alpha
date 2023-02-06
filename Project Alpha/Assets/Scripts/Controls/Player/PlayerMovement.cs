@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
+using Combat.Player;
 using General.Interfaces;
 using UnityEngine;
 
 namespace Controls
 {
-    public class PlayerMovement : Movement, IKnockBackable
+    public class PlayerMovement : Movement
     {
         [SerializeField] private CameraController cameraController;
 
@@ -20,12 +21,6 @@ namespace Controls
             base.Awake();
             
             _afterImage = GetComponent<AfterImage>();
-        }
-
-        public void KnockBack(KnockBackData data)
-        {
-            data.angle.Normalize();
-            Rigidbody.velocity = new Vector2(data.strength * data.angle.x * data.direction, data.strength * data.angle.y);
         }
 
         protected override void Update()

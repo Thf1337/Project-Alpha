@@ -57,7 +57,10 @@ namespace Combat
 
             health -= damage;
 
-            attackDamage.source.AddToTotalDamage(damage);
+            if (attackDamage.source != null)
+            {
+                attackDamage.source.AddToTotalDamage(damage);
+            }
             
             print($"{damage} damage");
 

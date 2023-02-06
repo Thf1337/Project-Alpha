@@ -13,8 +13,8 @@ namespace Controls.Enemy.FSM.Activity
         
         public override void Enter(BaseStateMachine stateMachine)
         {
-            knockBackData.source = stateMachine.gameObject;
-            knockBackData.direction = stateMachine.dirX >= 0 ? 1 : -1;
+            knockBackData.source = stateMachine.gameObject;                                                                                                                                    
+            knockBackData.direction = stateMachine.Player.transform.position.x >= stateMachine.transform.position.x ? 1 : -1;
             _playerMovement = stateMachine.Player.GetComponent<Movement>();
         }
 

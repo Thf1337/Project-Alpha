@@ -7,48 +7,57 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    public float interactRadius;
+    public LayerMask interactableLayerMask;
     [SerializeField] private TextMeshProUGUI inputHelper;
-    private IInteractable _lastInteractable;
+    // private IInteractable _lastInteractable;
 
     void Update()
     {
-        if (_lastInteractable != null)
-        {
-            inputHelper.enabled = true;
-        }
-        else
+        var hits = Physics2D.OverlapBoxAll(transform.position, 
+            new (interactRadius, interactRadius), 0f, interactableLayerMask);
+        
+        if (hits.Length == 0)
         {
             inputHelper.enabled = false;
+            return;
         }
-        
-        if (Input.GetButtonDown("Interact") && _lastInteractable != null)
-        {
-            _lastInteractable.Interact(gameObject);
 
-            if (_lastInteractable == null || _lastInteractable.HasInteracted())
+        foreach (var hit in hits)
+        {
+            var interactable = hit.GetComponent<IInteractable>();
+
+            if (interactable == null || interactable.HasInteracted())
             {
-                _lastInteractable = null;
+                continue;
             }
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Interactable"))
-        {
-            var interactable = collision.GetComponent<IInteractable>();
-
-            if (interactable.HasInteracted())
+        
+            inputHelper.enabled = true;
+            if (Input.GetButtonDown("Interact"))
             {
+                interactable.Interact(gameObject);
                 return;
             }
-
-            _lastInteractable = interactable;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        _lastInteractable = null;
-    }
+    // private void OnTriggerStay2D(Collider2D collision)
+    // {
+    //     if (collision.CompareTag("Interactable"))
+    //     {
+    //         var interactable = collision.GetComponent<IInteractable>();
+    //
+    //         if (interactable.HasInteracted())
+    //         {
+    //             return;
+    //         }
+    //
+    //         _lastInteractable = interactable;
+    //     }
+    // }
+
+    // private void OnTriggerExit2D(Collider2D collision)
+    // {
+    //     _lastInteractable = null;
+    // }
 }
